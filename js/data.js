@@ -1,5 +1,5 @@
 // Intro paragraph — displayed as liner notes between the hero and the crate
-const INTRO_TEXT = "Well I'm not dead yet. Decent going, so far. \n\nI thought it might be fun to compile a list of tracks over the years, not the best tracks, not even my favourite tracks...but each one has a very strong memory attached to it. \n\nLike when you hear a song and it takes you back to a very particular moment in time. That's this playlist for me. \n\nMusic is a wonderful thing, it brings back those memories like they are just happening, you relive them all so vividly once more. Mine are filled with people, for some reason I remember people with all my music. What's better than memories of people and music? Thank you all for being there, putting up with me, laughing, dancing, giving and loving. \n\nYou're all the best of times. ";
+const INTRO_TEXT = "Well I'm not dead yet. Decent going, so far. \n\nI thought it might be fun to compile a list of tracks over the years, not the best tracks, not even my favourite tracks...but each one has a very strong memory attached to it. \n\nLike when you hear a song and it takes you back to a very particular moment in time. That's this playlist for me. Hover over each album, the b-side contains a precious memory. \n\nMusic is a wonderful thing, it brings back those memories like they are just happening, you relive them all so vividly once more. Mine are filled with people, for some reason I remember people with all my music. What's better than memories of people and music? Thank you all for being there, putting up with me, laughing, dancing, giving and loving. \n\nYou're all the best of times. ";
 
 // Playlist order IS the timeline — don't reorder by release year
 const TRACKS = [
@@ -250,7 +250,7 @@ const TRACKS = [
     era: "2010s",
     imageUrl: "img/covers/19-daft-punk.jpg",
     spotifyUrl: "https://open.spotify.com/track/0dEIca2nhcxDUV8C5QkPYb",
-    message: "If there is a perfect day this was it. Ski touring, Chamonix after the storm, back home for wine outside the church listening to this album with Fletch and Chistophe Le Bon"
+    message: "If there is a perfect day this was it. Ski touring, Chamonix after the storm, back home for wine outside Le Praz listening to this album with Fletch and Chistophe Le Bon. "
   },
   {
     title: "What You Know",
@@ -259,16 +259,7 @@ const TRACKS = [
     era: "2010s",
     imageUrl: "img/covers/20-two-door-cinema-club.jpg",
     spotifyUrl: "https://open.spotify.com/track/4JHg4nNYUJQ5HULcCmI18R",
-    message: "Trail runs and Sarah. Also Glasto with Moggsy"
-  },
-  {
-    title: "Best of Friends",
-    artist: "Palma Violets",
-    year: 2013,
-    era: "2010s",
-    imageUrl: "img/covers/28-palma-violets.jpg",
-    spotifyUrl: "https://open.spotify.com/track/4qXouIODcT7oqFdrX6gNxz",
-    message: ""
+    message: "Trail runs and Sarah. "
   },
   {
     title: "Here Comes The Sun",
@@ -295,7 +286,7 @@ const TRACKS = [
     era: "2010s",
     imageUrl: "img/covers/29-ratatat.jpg",
     spotifyUrl: "https://open.spotify.com/track/3s25iX3minD5jORW4KpANZ",
-    message: ""
+    message: "Wild gig at the Brixton Academy with Richard. "
   },
   {
     title: "Leave This Island",
@@ -304,7 +295,7 @@ const TRACKS = [
     era: "2010s",
     imageUrl: "img/covers/22-maximo-park.jpg",
     spotifyUrl: "https://open.spotify.com/track/2wStc2el7aHJdi9AejMJOC",
-    message: ""
+    message: "NZ road trip in the Coromandel.  "
   },
 
   // ═══════════════════════════════════════
@@ -326,7 +317,7 @@ const TRACKS = [
     era: "2020s",
     imageUrl: "img/covers/29-arcade-fire.jpg",
     spotifyUrl: "https://open.spotify.com/track/0hWkwXsf7hzVXNyDI3Olr2",
-    message: ""
+    message: "Live with Sarah in a boxing ring in East London. Hella gig. "
   },
   {
     title: "Lucky Ones",
@@ -335,7 +326,7 @@ const TRACKS = [
     era: "2020s",
     imageUrl: "img/covers/23-lana-del-rey.jpg",
     spotifyUrl: "https://open.spotify.com/track/7IJBUdmGhekulOkhct3WGD",
-    message: "Stranged in NZ in Covid with the fam on the beach. Maisy."
+    message: "Stranded in NZ in Covid with the fam on the beach. Maisy."
   },
   {
     title: "Pink Rabbits",
@@ -353,7 +344,7 @@ const TRACKS = [
     era: "2020s",
     imageUrl: "img/covers/33-hailey-whitters.jpg",
     spotifyUrl: "https://open.spotify.com/track/0ENB9P6WtUEKYjQ3dKnK23",
-    message: ""
+    message: "Shared love of country with Sam T. "
   },
   {
     title: "Hypnotized",
@@ -362,7 +353,7 @@ const TRACKS = [
     era: "2020s",
     imageUrl: "img/covers/36-purple-disco-machine.jpg",
     spotifyUrl: "https://open.spotify.com/track/7HxWZggiHyGWT9ZSmWzcxu",
-    message: ""
+    message: "Full circle back to Bob Sinclair levels. Working with Klaas at ™"
   }
 ];
 
