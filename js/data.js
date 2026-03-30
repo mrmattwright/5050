@@ -62,7 +62,7 @@ const TRACKS = [
     era: "90s",
     imageUrl: "img/covers/05-suede.jpg",
     spotifyUrl: "https://open.spotify.com/track/5yWVfYEeQRPuFtytvkOgU1",
-    message: ""
+    message: "Driving with John Manktelow around Auckland. Real Groovy.  "
   },
   {
     title: "Jesus I Was Evil",
@@ -98,7 +98,7 @@ const TRACKS = [
     era: "90s",
     imageUrl: "img/covers/08-supergrass.jpg",
     spotifyUrl: "https://open.spotify.com/track/0iAcyO7WLhnC7WOTOpjGv1",
-    message: ""
+    message: "Glenn, Si and Jeff in our Grey Lynn flat. "
   },
   {
     title: "Holiday",
@@ -116,7 +116,7 @@ const TRACKS = [
     era: "90s",
     imageUrl: "img/covers/12-klubbheads.jpg",
     spotifyUrl: "https://open.spotify.com/track/41otsEyU99WZIJAEDt6SZx",
-    message: "There was also this. "
+    message: "There was also this. It's fun seeing 100s of people dancing to something you drop. "
   },
   {
     title: "Dreams of You",
@@ -143,7 +143,7 @@ const TRACKS = [
     era: "90s",
     imageUrl: "img/covers/15-bob-sinclar.jpg",
     spotifyUrl: "https://open.spotify.com/track/4wHvbgqq5lrNJ9BatOqeYS",
-    message: ""
+    message: "Another personal favourite from my record box. "
   },
 
   // ═══════════════════════════════════════
@@ -184,6 +184,15 @@ const TRACKS = [
     imageUrl: "img/covers/13-knuckleheadz.jpg",
     spotifyUrl: "https://open.spotify.com/track/0CsTcPo3X49sdO1uRGhMCl",
     message: "Back in London once again - House party to end all house parties with Paul and Katie."
+  },
+  {
+    title: "Oi Divchino",
+    artist: "The Ukrainians",
+    year: 1991,
+    era: "00s",
+    imageUrl: "img/covers/20-the-ukrainians.jpg",
+    spotifyUrl: "https://open.spotify.com/track/6hbkohe4OVM1Ng7v81dDWq",
+    message: "Gary Russon and Tony and Grant. WAM at DrKW."
   },
   {
     title: "Drop the Pressure",
@@ -237,7 +246,7 @@ const TRACKS = [
     era: "00s",
     imageUrl: "img/covers/23-hot-chip.jpg",
     spotifyUrl: "https://open.spotify.com/track/4awYwVxuFrwxWVgk9jvELR",
-    message: ""
+    message: "It was a dark year, Lewis was there. Thanks Lewis. "
   },
 
   // ═══════════════════════════════════════
@@ -262,6 +271,15 @@ const TRACKS = [
     message: "Trail runs and Sarah. "
   },
   {
+    title: "Best of Friends",
+    artist: "Palma Violets",
+    year: 2013,
+    era: "2010s",
+    imageUrl: "img/covers/28-palma-violets.jpg",
+    spotifyUrl: "https://open.spotify.com/track/4qXouIODcT7oqFdrX6gNxz",
+    message: "Glasto with Moggsy. Dance with me brother. "
+  },
+  {
     title: "Here Comes The Sun",
     artist: "The Beatles",
     year: 2015,
@@ -271,13 +289,13 @@ const TRACKS = [
     message: "Bouldering with Sarah. Our Song. "
   },
   {
-    title: "Dull to Pause",
-    artist: "Junior Boys",
-    year: 2015,
+    title: "Figure It Out",
+    artist: "Royal Blood",
+    year: 2014,
     era: "2010s",
-    imageUrl: "img/covers/22-junior-boys.jpg",
-    spotifyUrl: "https://open.spotify.com/track/7qT5oB0kfnfI0eDChfe0xx?si=d9c38e04753d40f1",
-    message: "Richard, Ian and Felix at Stitched"
+    imageUrl: "img/covers/30-royal-blood.jpg",
+    spotifyUrl: "https://open.spotify.com/track/0Bpy92d4H4Ttb68UUUReJG",
+    message: "Stitched Crew.  Richard, Felix and Ian Harris - headphones on drumming like a madman building amazing things. "
   },
   {
     title: "Cream On Chrome",
@@ -353,7 +371,7 @@ const TRACKS = [
     era: "2020s",
     imageUrl: "img/covers/36-purple-disco-machine.jpg",
     spotifyUrl: "https://open.spotify.com/track/7HxWZggiHyGWT9ZSmWzcxu",
-    message: "Full circle back to Bob Sinclair levels. Working with Klaas at ™"
+    message: "Full circle back to Bob Sinclair levels. Working with Klaas at Trade Me"
   }
 ];
 
