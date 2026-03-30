@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" fill="none" stroke="#b026ff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Compact Cassette — TDK SA90 / Maxell XLII vibe -->
+  <!-- Outer shell -->
+  <rect x="15" y="15" width="470" height="290" rx="12" opacity="0.7" stroke-width="2"/>
+  <!-- Inner frame -->
+  <rect x="30" y="30" width="440" height="260" rx="8" opacity="0.3"/>
+  <!-- ═══ TAPE WINDOW ═══ -->
+  <rect x="75" y="50" width="350" height="110" rx="6" opacity="0.5"/>
+  <rect x="82" y="57" width="336" height="96" rx="4" opacity="0.2"/>
+  <!-- ═══ LEFT REEL HUB ═══ -->
+  <circle cx="175" cy="105" r="40" opacity="0.5"/>
+  <circle cx="175" cy="105" r="32" opacity="0.3"/>
+  <circle cx="175" cy="105" r="15" opacity="0.4"/>
+  <!-- Hub spokes (6-pointed) -->
+  <line x1="175" y1="65" x2="175" y2="78" opacity="0.35"/>
+  <line x1="141" y1="85" x2="152" y2="92" opacity="0.35"/>
+  <line x1="141" y1="125" x2="152" y2="118" opacity="0.35"/>
+  <line x1="175" y1="145" x2="175" y2="132" opacity="0.35"/>
+  <line x1="209" y1="125" x2="198" y2="118" opacity="0.35"/>
+  <line x1="209" y1="85" x2="198" y2="92" opacity="0.35"/>
+  <!-- Hub teeth (the grippable part) -->
+  <rect x="168" y="91" width="14" height="6" rx="1" opacity="0.25" transform="rotate(0 175 105)"/>
+  <rect x="168" y="111" width="14" height="6" rx="1" opacity="0.25" transform="rotate(0 175 105)"/>
+  <!-- Tape wound on left (mostly full) -->
+  <circle cx="175" cy="105" r="36" opacity="0.15" stroke-dasharray="3 1"/>
+  <!-- ═══ RIGHT REEL HUB ═══ -->
+  <circle cx="325" cy="105" r="40" opacity="0.5"/>
+  <circle cx="325" cy="105" r="32" opacity="0.3"/>
+  <circle cx="325" cy="105" r="15" opacity="0.4"/>
+  <!-- Hub spokes -->
+  <line x1="325" y1="65" x2="325" y2="78" opacity="0.35"/>
+  <line x1="291" y1="85" x2="302" y2="92" opacity="0.35"/>
+  <line x1="291" y1="125" x2="302" y2="118" opacity="0.35"/>
+  <line x1="325" y1="145" x2="325" y2="132" opacity="0.35"/>
+  <line x1="359" y1="125" x2="348" y2="118" opacity="0.35"/>
+  <line x1="359" y1="85" x2="348" y2="92" opacity="0.35"/>
+  <rect x="318" y="91" width="14" height="6" rx="1" opacity="0.25"/>
+  <rect x="318" y="111" width="14" height="6" rx="1" opacity="0.25"/>
+  <!-- Tape between reels -->
+  <line x1="215" y1="105" x2="285" y2="105" opacity="0.2"/>
+  <!-- Tape guide rollers -->
+  <circle cx="95" cy="105" r="5" opacity="0.35"/>
+  <circle cx="405" cy="105" r="5" opacity="0.35"/>
+  <!-- Tape path (bottom of window) -->
+  <path d="M 95 110 Q 100 145 175 145" opacity="0.15"/>
+  <path d="M 405 110 Q 400 145 325 145" opacity="0.15"/>
+  <!-- ═══ LABEL AREA ═══ -->
+  <rect x="100" y="175" width="300" height="80" rx="3" opacity="0.3"/>
+  <!-- Label content lines (handwritten feel) -->
+  <line x1="120" y1="195" x2="280" y2="195" opacity="0.2"/>
+  <line x1="120" y1="210" x2="350" y2="210" opacity="0.2"/>
+  <line x1="120" y1="225" x2="310" y2="225" opacity="0.15"/>
+  <line x1="120" y1="240" x2="250" y2="240" opacity="0.1"/>
+  <!-- A/B side marker -->
+  <rect x="330" y="185" width="50" height="24" rx="3" opacity="0.25"/>
+  <line x1="342" y1="193" x2="368" y2="193" opacity="0.2"/>
+  <line x1="345" y1="201" x2="365" y2="201" opacity="0.15"/>
+  <!-- ═══ SCREW HOLES ═══ -->
+  <circle cx="42" cy="42" r="5" opacity="0.3"/>
+  <circle cx="42" cy="42" r="2" opacity="0.4" fill="#b026ff" fill-opacity="0.1"/>
+  <circle cx="458" cy="42" r="5" opacity="0.3"/>
+  <circle cx="458" cy="42" r="2" opacity="0.4" fill="#b026ff" fill-opacity="0.1"/>
+  <circle cx="42" cy="278" r="5" opacity="0.3"/>
+  <circle cx="42" cy="278" r="2" opacity="0.4" fill="#b026ff" fill-opacity="0.1"/>
+  <circle cx="458" cy="278" r="5" opacity="0.3"/>
+  <circle cx="458" cy="278" r="2" opacity="0.4" fill="#b026ff" fill-opacity="0.1"/>
+  <!-- Center screw -->
+  <circle cx="250" cy="160" r="4" opacity="0.25"/>
+  <!-- ═══ BOTTOM TAPE OPENING ═══ -->
+  <path d="M 130 295 Q 250 320 370 295" opacity="0.4"/>
+  <line x1="130" y1="295" x2="130" y2="280" opacity="0.25"/>
+  <line x1="370" y1="295" x2="370" y2="280" opacity="0.25"/>
+  <!-- Write-protect tabs -->
+  <rect x="55" y="282" width="18" height="12" rx="2" opacity="0.2"/>
+  <rect x="427" y="282" width="18" height="12" rx="2" opacity="0.2"/>
+</svg>

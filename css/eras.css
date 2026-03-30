@@ -1,0 +1,171 @@
+/* ── ERA SECTIONS ─────────────────────────── */
+.era {
+  min-height: 100vh;
+  padding: 8rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.era__header {
+  text-align: center;
+  margin-bottom: 5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.era__year-range {
+  font-family: var(--font-digital);
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--era-accent);
+  opacity: 0.7;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.era__name {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: white;
+  text-shadow:
+    0 0 20px var(--era-glow),
+    0 0 60px var(--era-glow),
+    0 0 100px rgba(255, 45, 149, 0.2);
+  margin-bottom: 0.5rem;
+}
+
+.era__tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Era Background Silhouettes ────────────── */
+.era__silhouette {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.era.in-view .era__silhouette {
+  opacity: 0.35;
+}
+
+.era__silhouette svg {
+  width: 100%;
+  height: 100%;
+}
+
+.era__silhouette--right {
+  width: min(600px, 65vw);
+  height: min(600px, 65vw);
+  top: 10%;
+  right: 5%;
+}
+
+.era__silhouette--left {
+  width: min(600px, 65vw);
+  height: min(600px, 65vw);
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.era__silhouette--bottom {
+  top: auto;
+  bottom: 5%;
+  left: auto;
+  right: 5%;
+  transform: none;
+}
+
+/* Era-specific sizing */
+.era--2010s .era__silhouette {
+  width: min(320px, 40vw);
+  height: min(560px, 70vw);
+}
+
+/* Era-specific header fonts */
+.era--80s .era__name { font-family: var(--font-display); }
+.era--90s .era__name { font-family: var(--font-grunge); text-transform: uppercase; }
+.era--00s .era__name { font-family: var(--font-digital); }
+.era--2010s .era__name { font-family: var(--font-body); font-weight: 300; }
+.era--2020s .era__name { font-family: var(--font-display); }
+
+/* Era background gradients */
+.era--80s {
+  background: linear-gradient(180deg,
+    var(--black) 0%,
+    #1a0525 20%,
+    #2d0a3e 50%,
+    #1a0525 80%,
+    var(--black) 100%
+  );
+  --era-accent: var(--neon-pink);
+  --era-glow: var(--neon-pink);
+  --crt-opacity: 0.4;
+  --grain-opacity: 0.08;
+}
+
+.era--90s {
+  background: linear-gradient(180deg,
+    var(--black) 0%,
+    #0d0618 20%,
+    #1a0d2e 50%,
+    #0d0618 80%,
+    var(--black) 100%
+  );
+  --era-accent: var(--electric-purple);
+  --era-glow: #8b00ff;
+  --crt-opacity: 0.3;
+  --grain-opacity: 0.1;
+}
+
+.era--00s {
+  background: linear-gradient(180deg,
+    var(--black) 0%,
+    #1a0a2e 20%,
+    #251540 50%,
+    #1a0a2e 80%,
+    var(--black) 100%
+  );
+  --era-accent: #c77dff;
+  --era-glow: #c77dff;
+  --crt-opacity: 0.15;
+  --grain-opacity: 0.04;
+}
+
+.era--2010s {
+  background: linear-gradient(180deg,
+    var(--black) 0%,
+    #120a20 20%,
+    #1a1030 50%,
+    #120a20 80%,
+    var(--black) 100%
+  );
+  --era-accent: #7b2ff7;
+  --era-glow: #7b2ff7;
+  --crt-opacity: 0.05;
+  --grain-opacity: 0.02;
+}
+
+.era--2020s {
+  background: linear-gradient(180deg,
+    var(--black) 0%,
+    #1a0525 20%,
+    #2d0a3e 50%,
+    #1a0525 80%,
+    var(--black) 100%
+  );
+  --era-accent: var(--neon-pink);
+  --era-glow: var(--neon-pink);
+  --crt-opacity: 0.2;
+  --grain-opacity: 0.05;
+}

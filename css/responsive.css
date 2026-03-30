@@ -1,0 +1,135 @@
+/* ── FOOTER ───────────────────────────────── */
+.footer {
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  background: var(--black);
+}
+
+.footer__playlist-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--neon-pink);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid rgba(255, 45, 149, 0.3);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.footer__playlist-link:hover {
+  background: rgba(255, 45, 149, 0.1);
+  box-shadow: 0 0 20px rgba(255, 45, 149, 0.3);
+  border-color: var(--neon-pink);
+}
+
+.footer__spotify-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Scroll Animations (initial states) ───── */
+.track-card {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.track-card.in-view {
+  opacity: 1;
+}
+
+.era--80s .track-card.in-view {
+  transform: rotate(-1.5deg) translateY(0);
+}
+.era--80s .track-card:nth-child(even).in-view {
+  transform: rotate(1deg) translateY(0);
+}
+.era--90s .track-card.in-view {
+  transform: rotate(0.5deg) translateY(0);
+}
+.era--90s .track-card:nth-child(odd).in-view {
+  transform: rotate(-1deg) translateY(0);
+}
+.era--00s .track-card.in-view {
+  transform: rotate(0deg) translateY(0);
+}
+.era--2010s .track-card.in-view {
+  transform: rotate(0deg) translateY(0);
+}
+.era--2020s .track-card.in-view {
+  transform: rotate(-0.5deg) translateY(0);
+}
+
+.era__header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.era__header.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 768px) {
+  .year-counter {
+    left: auto;
+    right: auto;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .year-counter__value {
+    writing-mode: horizontal-tb;
+    font-size: 0.9rem;
+  }
+
+  .era-nav {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    flex-direction: row;
+  }
+
+  .era-nav__label {
+    display: none;
+  }
+
+  .era {
+    padding: 5rem 1.5rem 4rem;
+  }
+
+  .era__tracks {
+    gap: 4rem;
+  }
+}
+
+/* ── Reduced Motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .track-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .era__header {
+    opacity: 1;
+    transform: none;
+  }
+
+  .crt-overlay,
+  .grain-overlay {
+    display: none;
+  }
+}

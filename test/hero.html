@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50/50 — Hero Test</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600&family=Special+Elite&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/hero.css">
+</head>
+<body>
+
+  <!-- CRT Scanline Overlay -->
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- Film Grain -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero__content">
+      <!-- Vinyl record with label -->
+      <div class="hero__vinyl">
+        <div class="hero__vinyl-grooves"></div>
+        <div class="hero__vinyl-label">
+          <span class="hero__label-title">50/50</span>
+          <div class="hero__vinyl-hole"></div>
+          <div class="hero__label-middle">
+            <div class="hero__label-left">
+              <span class="hero__label-a">A</span>
+              <span class="hero__label-side">SIDE</span>
+            </div>
+            <div class="hero__label-right">
+              <span class="hero__label-lp">LP1</span>
+              <span class="hero__label-rpm">33 RPM</span>
+            </div>
+          </div>
+          <a href="https://open.spotify.com/playlist/3Kk6r9hmwCe0J8lKW7zG14" class="hero__label-spotify" id="spotify-play" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <span>Listen on Spotify</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero__scroll-hint">
+        <span>Scroll to begin</span>
+        <div class="hero__arrow">&#9662;</div>
+      </div>
+    </div>
+    <!-- Neon grid floor -->
+    <div class="hero__grid" aria-hidden="true"></div>
+  </header>
+
+  <!-- Spotify play interaction -->
+  <script src="../js/data.js"></script>
+  <script>
+    (function () {
+      const link = document.getElementById('spotify-play');
+      const vinyl = document.querySelector('.hero__vinyl');
+      if (!link || !vinyl) return;
+
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const href = this.href;
+
+        // Spin up the record
+        vinyl.classList.add('playing');
+
+        // Open Spotify after a beat
+        setTimeout(() => {
+          window.open(href, '_blank');
+        }, 2000);
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50/50 — Fifty Songs for Fifty Years</title>
+  <meta name="description" content="A musical journey through 50 years. One song at a time.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600&family=Special+Elite&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/crate.css">
+  <link rel="stylesheet" href="css/eras.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- CRT Scanline Overlay -->
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- Film Grain -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Year Counter -->
+  <div class="year-counter" aria-label="Current year">
+    <span class="year-counter__value">1980</span>
+  </div>
+
+  <!-- Era Navigation -->
+  <nav class="era-nav" aria-label="Jump to era">
+    <button data-era="80s" class="era-nav__dot active" title="Side A — 1980s">
+      <span class="era-nav__label">Side A</span>
+    </button>
+    <button data-era="90s" class="era-nav__dot" title="Side B — 1990s">
+      <span class="era-nav__label">Side B</span>
+    </button>
+    <button data-era="00s" class="era-nav__dot" title="Track 3 — 2000s">
+      <span class="era-nav__label">Track 3</span>
+    </button>
+    <button data-era="2010s" class="era-nav__dot" title="Now Playing — 2010s">
+      <span class="era-nav__label">Now Playing</span>
+    </button>
+    <button data-era="2020s" class="era-nav__dot" title="The B-Side — 2020s">
+      <span class="era-nav__label">The B-Side</span>
+    </button>
+  </nav>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ════════════════════════════════════ -->
+  <header class="hero">
+    <div class="hero__content">
+      <!-- Vinyl record with label -->
+      <div class="hero__vinyl">
+        <div class="hero__vinyl-grooves"></div>
+        <div class="hero__vinyl-label">
+          <span class="hero__label-title">50/50</span>
+          <div class="hero__vinyl-hole"></div>
+          <div class="hero__label-middle">
+            <div class="hero__label-left">
+              <span class="hero__label-a">A</span>
+              <span class="hero__label-side">SIDE</span>
+            </div>
+            <div class="hero__label-right">
+              <span class="hero__label-lp">LP1</span>
+              <span class="hero__label-rpm">33 RPM</span>
+            </div>
+          </div>
+          <a href="https://open.spotify.com/playlist/3Kk6r9hmwCe0J8lKW7zG14" class="hero__label-spotify" id="spotify-play" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <span>Listen on Spotify</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero__scroll-hint">
+        <span>Scroll to begin</span>
+        <div class="hero__arrow">▾</div>
+      </div>
+    </div>
+    <!-- Neon grid floor -->
+    <div class="hero__grid" aria-hidden="true"></div>
+  </header>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- LINER NOTES — intro paragraph -->
+  <!-- ════════════════════════════════════ -->
+  <section class="liner-notes">
+    <div class="liner-notes__content" id="liner-notes-text">
+      <!-- Populated from data.js -->
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- RECORD CRATE — scroll-driven dig -->
+  <!-- ════════════════════════════════════ -->
+  <section class="crate-section">
+    <div class="crate">
+      <div class="crate__records" id="crate-records">
+        <!-- Records injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- ERAS -->
+  <!-- ════════════════════════════════════ -->
+  <main>
+
+    <!-- SIDE A — 80s -->
+    <section class="era era--80s" data-era="80s" id="era-80s">
+      <div class="era__silhouette era__silhouette--right" aria-hidden="true">
+        <!-- Vinyl Record + Sleeve -->
+        <svg viewBox="0 0 500 500" fill="none" stroke="#ff2d95" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Record sleeve poking out behind -->
+          <rect x="30" y="60" width="340" height="340" rx="4" opacity="0.25" fill="#ff2d95" fill-opacity="0.02"/>
+          <rect x="30" y="60" width="340" height="340" rx="4" opacity="0.4"/>
+          <!-- The vinyl record — pulled halfway out of sleeve -->
+          <circle cx="310" cy="250" r="175" opacity="0.5" stroke-width="2"/>
+          <!-- Outer groove area -->
+          <circle cx="310" cy="250" r="168" opacity="0.2"/>
+          <!-- Grooves — the signature look -->
+          <circle cx="310" cy="250" r="160" opacity="0.12" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="150" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="140" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="130" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="120" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="110" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="100" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="90" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="80" opacity="0.1" stroke-dasharray="2 3"/>
+          <circle cx="310" cy="250" r="70" opacity="0.1" stroke-dasharray="2 3"/>
+          <!-- Label -->
+          <circle cx="310" cy="250" r="55" opacity="0.4" stroke-width="1.5"/>
+          <circle cx="310" cy="250" r="52" opacity="0.15" fill="#ff2d95" fill-opacity="0.04"/>
+          <!-- Label text -->
+          <line x1="280" y1="238" x2="340" y2="238" opacity="0.25"/>
+          <line x1="288" y1="248" x2="332" y2="248" opacity="0.2"/>
+          <line x1="293" y1="258" x2="327" y2="258" opacity="0.15"/>
+          <!-- Spindle hole -->
+          <circle cx="310" cy="250" r="4" opacity="0.7" fill="#ff2d95" fill-opacity="0.15"/>
+          <!-- Dead wax / run-out groove -->
+          <circle cx="310" cy="250" r="60" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="era__header">
+        <span class="era__year-range">1980–1989</span>
+        <h2 class="era__name">Side A</h2>
+        <span class="era__tagline">Vinyl</span>
+      </div>
+      <div class="era__tracks" id="tracks-80s"></div>
+    </section>
+
+    <!-- SIDE B — 90s -->
+    <section class="era era--90s" data-era="90s" id="era-90s">
+      <div class="era__silhouette era__silhouette--left" aria-hidden="true">
+        <!-- Compact Cassette — TDK/Maxell style -->
+        <svg viewBox="0 0 500 320" fill="none" stroke="#b026ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Shell -->
+          <rect x="15" y="15" width="470" height="290" rx="12" opacity="0.6" stroke-width="2"/>
+          <!-- Inner frame -->
+          <rect x="30" y="30" width="440" height="260" rx="8" opacity="0.3"/>
+          <!-- Tape window -->
+          <rect x="75" y="48" width="350" height="115" rx="6" opacity="0.5" stroke-width="1.5"/>
+          <!-- Left reel hub -->
+          <circle cx="175" cy="105" r="42" opacity="0.5" stroke-width="1.5"/>
+          <circle cx="175" cy="105" r="34" opacity="0.3"/>
+          <circle cx="175" cy="105" r="14" opacity="0.5"/>
+          <!-- 6 hub teeth -->
+          <path d="M175 63 L175 78" opacity="0.4"/>
+          <path d="M139 84 L152 92" opacity="0.4"/>
+          <path d="M139 126 L152 118" opacity="0.4"/>
+          <path d="M175 147 L175 132" opacity="0.4"/>
+          <path d="M211 126 L198 118" opacity="0.4"/>
+          <path d="M211 84 L198 92" opacity="0.4"/>
+          <!-- Right reel hub -->
+          <circle cx="325" cy="105" r="42" opacity="0.5" stroke-width="1.5"/>
+          <circle cx="325" cy="105" r="34" opacity="0.3"/>
+          <circle cx="325" cy="105" r="14" opacity="0.5"/>
+          <!-- 6 hub teeth -->
+          <path d="M325 63 L325 78" opacity="0.4"/>
+          <path d="M289 84 L302 92" opacity="0.4"/>
+          <path d="M289 126 L302 118" opacity="0.4"/>
+          <path d="M325 147 L325 132" opacity="0.4"/>
+          <path d="M361 126 L348 118" opacity="0.4"/>
+          <path d="M361 84 L348 92" opacity="0.4"/>
+          <!-- Tape between reels -->
+          <line x1="217" y1="105" x2="283" y2="105" opacity="0.25"/>
+          <!-- Guide rollers -->
+          <circle cx="92" cy="105" r="6" opacity="0.4"/>
+          <circle cx="408" cy="105" r="6" opacity="0.4"/>
+          <!-- Tape path -->
+          <path d="M92 111 L92 150 Q92 158 100 158 L400 158 Q408 158 408 150 L408 111" opacity="0.2"/>
+          <!-- Label area -->
+          <rect x="100" y="172" width="300" height="85" rx="3" opacity="0.35"/>
+          <!-- Label lines (mixtape scrawl) -->
+          <line x1="120" y1="192" x2="300" y2="192" opacity="0.25" stroke-width="0.8"/>
+          <line x1="120" y1="207" x2="360" y2="207" opacity="0.25" stroke-width="0.8"/>
+          <line x1="120" y1="222" x2="330" y2="222" opacity="0.2" stroke-width="0.8"/>
+          <line x1="120" y1="237" x2="260" y2="237" opacity="0.15" stroke-width="0.8"/>
+          <!-- Corner screws -->
+          <circle cx="42" cy="42" r="6" opacity="0.35"/><circle cx="42" cy="42" r="2.5" opacity="0.5"/>
+          <circle cx="458" cy="42" r="6" opacity="0.35"/><circle cx="458" cy="42" r="2.5" opacity="0.5"/>
+          <circle cx="42" cy="278" r="6" opacity="0.35"/><circle cx="42" cy="278" r="2.5" opacity="0.5"/>
+          <circle cx="458" cy="278" r="6" opacity="0.35"/><circle cx="458" cy="278" r="2.5" opacity="0.5"/>
+          <!-- Bottom opening -->
+          <path d="M140 293 Q250 318 360 293" opacity="0.45" stroke-width="1.5"/>
+          <line x1="140" y1="293" x2="140" y2="275" opacity="0.3"/>
+          <line x1="360" y1="293" x2="360" y2="275" opacity="0.3"/>
+          <!-- Write-protect tabs -->
+          <rect x="52" y="280" width="20" height="12" rx="2" opacity="0.25"/>
+          <rect x="428" y="280" width="20" height="12" rx="2" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="era__silhouette era__silhouette--right era__silhouette--bottom" aria-hidden="true">
+        <!-- Technics SL-1200MK2 — top-down view -->
+        <svg viewBox="0 0 600 460" fill="none" stroke="#b026ff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- ══ HOUSING — wider than tall, like the real thing ══ -->
+          <rect x="10" y="10" width="580" height="440" rx="8" opacity="0.6" stroke-width="2"/>
+          <rect x="20" y="20" width="560" height="420" rx="5" opacity="0.2"/>
+
+          <!-- ══ PLATTER — large, left-of-centre ══ -->
+          <!-- Outer platter ring -->
+          <circle cx="240" cy="230" r="185" opacity="0.5" stroke-width="2"/>
+          <!-- Strobe dot ring — the iconic dense ring of dots -->
+          <circle cx="240" cy="230" r="178" opacity="0.15" stroke-dasharray="3 5"/>
+          <circle cx="240" cy="230" r="175" opacity="0.15" stroke-dasharray="3 5"/>
+          <!-- Inner platter surface -->
+          <circle cx="240" cy="230" r="170" opacity="0.25"/>
+
+          <!-- Platter ribs / concentric rings (the rubber mat lines) -->
+          <circle cx="240" cy="230" r="155" opacity="0.1"/>
+          <circle cx="240" cy="230" r="135" opacity="0.08"/>
+          <circle cx="240" cy="230" r="115" opacity="0.08"/>
+          <circle cx="240" cy="230" r="95" opacity="0.08"/>
+          <circle cx="240" cy="230" r="75" opacity="0.08"/>
+
+          <!-- Record label -->
+          <circle cx="240" cy="230" r="50" opacity="0.35" stroke-width="1.5"/>
+          <!-- Spindle -->
+          <circle cx="240" cy="230" r="5" opacity="0.7" fill="#b026ff" fill-opacity="0.15"/>
+
+          <!-- ══ TONEARM — the S-curve from top-right ══ -->
+          <!-- Gimbal mount base (the raised circular platform) -->
+          <circle cx="460" cy="100" r="28" opacity="0.4"/>
+          <circle cx="460" cy="100" r="22" opacity="0.3"/>
+          <!-- Pivot point -->
+          <circle cx="460" cy="100" r="6" opacity="0.5" fill="#b026ff" fill-opacity="0.08"/>
+          <!-- Anti-skate weight/dial -->
+          <circle cx="432" cy="80" r="5" opacity="0.35"/>
+          <!-- Counterweight (behind pivot) -->
+          <ellipse cx="490" cy="100" rx="16" ry="10" opacity="0.4"/>
+
+          <!-- The S-curved arm — sweeping from gimbal across the platter -->
+          <path d="M460 100 C450 95, 440 88, 425 92 C400 100, 380 130, 355 165 C335 195, 315 215, 295 228" opacity="0.6" stroke-width="2.5" fill="none"/>
+
+          <!-- Headshell at the end of the arm -->
+          <path d="M295 228 L282 220 L270 228 L280 238 Z" opacity="0.6" stroke-width="1.5"/>
+          <!-- Cartridge -->
+          <rect x="271" y="224" width="7" height="12" rx="1" opacity="0.5" transform="rotate(-20 275 230)"/>
+
+          <!-- Arm rest clip (top-right, where arm parks) -->
+          <rect x="498" y="75" width="6" height="22" rx="3" opacity="0.35"/>
+          <!-- Arm lift lever -->
+          <rect x="415" y="155" width="14" height="8" rx="2" opacity="0.3"/>
+
+          <!-- ══ PITCH FADER — right side, vertical ══ -->
+          <rect x="490" y="155" width="70" height="230" rx="5" opacity="0.4" stroke-width="1.5"/>
+          <!-- Fader slot -->
+          <line x1="525" y1="175" x2="525" y2="365" opacity="0.35" stroke-width="1.5"/>
+          <!-- Fader knob -->
+          <rect x="511" y="262" width="28" height="16" rx="3" opacity="0.55" fill="#b026ff" fill-opacity="0.04" stroke-width="1.5"/>
+          <!-- Centre detent (0%) -->
+          <line x1="542" y1="270" x2="556" y2="270" opacity="0.45" stroke-width="2"/>
+          <!-- Scale markings -->
+          <line x1="542" y1="195" x2="550" y2="195" opacity="0.2"/>
+          <line x1="542" y1="215" x2="550" y2="215" opacity="0.2"/>
+          <line x1="542" y1="235" x2="550" y2="235" opacity="0.2"/>
+          <line x1="542" y1="255" x2="550" y2="255" opacity="0.2"/>
+          <line x1="542" y1="290" x2="550" y2="290" opacity="0.2"/>
+          <line x1="542" y1="310" x2="550" y2="310" opacity="0.2"/>
+          <line x1="542" y1="330" x2="550" y2="330" opacity="0.2"/>
+          <line x1="542" y1="350" x2="550" y2="350" opacity="0.2"/>
+
+          <!-- ══ START/STOP BUTTON — bottom right ══ -->
+          <circle cx="525" cy="415" r="16" opacity="0.5" stroke-width="1.5"/>
+          <circle cx="525" cy="415" r="11" opacity="0.2"/>
+
+          <!-- ══ BOTTOM-LEFT CONTROLS ══ -->
+          <!-- Start/stop rocker (the big one) -->
+          <rect x="40" y="395" width="50" height="24" rx="6" opacity="0.4" stroke-width="1.5"/>
+          <!-- 33 RPM button -->
+          <rect x="105" y="395" width="35" height="24" rx="5" opacity="0.35"/>
+          <!-- 45 RPM button -->
+          <rect x="148" y="395" width="35" height="24" rx="5" opacity="0.35"/>
+
+          <!-- ══ TOP-LEFT — Power light ══ -->
+          <circle cx="38" cy="35" r="4" opacity="0.5" fill="#b026ff" fill-opacity="0.15"/>
+
+          <!-- ══ TARGET LIGHT — top right ══ -->
+          <rect x="498" y="35" width="25" height="10" rx="3" opacity="0.3"/>
+          <!-- Pop-up target light arm -->
+          <line x1="510" y1="45" x2="480" y2="65" opacity="0.2" stroke-width="1"/>
+
+          <!-- ══ TECHNICS LOGO AREA — bottom right ══ -->
+          <line x1="440" y1="440" x2="540" y2="440" opacity="0.15" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="era__header">
+        <span class="era__year-range">1990–1999</span>
+        <h2 class="era__name">Side B</h2>
+        <span class="era__tagline">Cassette → Technics 1200s</span>
+      </div>
+      <div class="era__tracks" id="tracks-90s"></div>
+    </section>
+
+    <!-- TRACK 3 — 00s -->
+    <section class="era era--00s" data-era="00s" id="era-00s">
+      <div class="era__silhouette era__silhouette--right" aria-hidden="true">
+        <!-- Sony MZ-R55 MiniDisc Player — the classic -->
+        <svg viewBox="0 0 480 340" fill="none" stroke="#c77dff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Player body — rounded rectangle, slightly wider than tall -->
+          <rect x="20" y="20" width="440" height="300" rx="25" opacity="0.6" stroke-width="2"/>
+          <!-- Inner bezel -->
+          <rect x="32" y="32" width="416" height="276" rx="20" opacity="0.25"/>
+          <!-- ══ DISC LID — the sliding/flip-open door ══ -->
+          <rect x="40" y="40" width="260" height="220" rx="12" opacity="0.5" stroke-width="1.5"/>
+          <!-- Lid edge detail -->
+          <line x1="42" y1="55" x2="298" y2="55" opacity="0.2"/>
+          <!-- ══ DISC VISIBLE THROUGH WINDOW ══ -->
+          <!-- MiniDisc cartridge outline -->
+          <rect x="65" y="70" width="210" height="170" rx="8" opacity="0.3"/>
+          <!-- Disc cartridge shutter -->
+          <rect x="65" y="70" width="210" height="22" rx="4" opacity="0.35"/>
+          <line x1="155" y1="70" x2="155" y2="92" opacity="0.2"/>
+          <line x1="185" y1="70" x2="185" y2="92" opacity="0.2"/>
+          <!-- The actual disc inside -->
+          <circle cx="170" cy="168" r="62" opacity="0.35"/>
+          <circle cx="170" cy="168" r="55" opacity="0.15"/>
+          <!-- Disc hub -->
+          <circle cx="170" cy="168" r="12" opacity="0.45"/>
+          <circle cx="170" cy="168" r="4" opacity="0.6" fill="#c77dff" fill-opacity="0.1"/>
+          <!-- Disc label area -->
+          <circle cx="170" cy="168" r="35" opacity="0.1" stroke-dasharray="1 2"/>
+          <!-- Lid release button -->
+          <rect x="255" y="135" width="35" height="18" rx="4" opacity="0.3"/>
+          <!-- ══ LCD DISPLAY ══ -->
+          <rect x="320" y="50" width="120" height="55" rx="5" opacity="0.5" stroke-width="1.5"/>
+          <rect x="326" y="56" width="108" height="43" rx="3" opacity="0.2" fill="#c77dff" fill-opacity="0.03"/>
+          <!-- LCD text lines -->
+          <line x1="334" y1="70" x2="410" y2="70" opacity="0.3" stroke-width="1.5"/>
+          <line x1="334" y1="82" x2="395" y2="82" opacity="0.2"/>
+          <line x1="334" y1="92" x2="370" y2="92" opacity="0.15"/>
+          <!-- ══ JOG DIAL — the distinctive circular control ══ -->
+          <circle cx="380" cy="155" r="32" opacity="0.5" stroke-width="1.5"/>
+          <circle cx="380" cy="155" r="26" opacity="0.3"/>
+          <circle cx="380" cy="155" r="8" opacity="0.4"/>
+          <!-- Jog dial direction marks -->
+          <line x1="380" y1="124" x2="380" y2="130" opacity="0.3"/>
+          <line x1="411" y1="155" x2="405" y2="155" opacity="0.3"/>
+          <line x1="380" y1="186" x2="380" y2="180" opacity="0.3"/>
+          <line x1="349" y1="155" x2="355" y2="155" opacity="0.3"/>
+          <!-- ══ TRANSPORT BUTTONS ══ -->
+          <!-- Play/Pause -->
+          <rect x="320" y="200" width="30" height="20" rx="4" opacity="0.4"/>
+          <polygon points="330,206 330,214 338,210" opacity="0.3" fill="#c77dff" fill-opacity="0.15"/>
+          <!-- Stop -->
+          <rect x="355" y="200" width="30" height="20" rx="4" opacity="0.4"/>
+          <rect x="363" y="206" width="8" height="8" rx="1" opacity="0.3" fill="#c77dff" fill-opacity="0.1"/>
+          <!-- Rew -->
+          <rect x="390" y="200" width="30" height="20" rx="4" opacity="0.4"/>
+          <!-- FF -->
+          <rect x="425" y="200" width="30" height="20" rx="4" opacity="0.4"/>
+          <!-- ══ REC BUTTON — the distinctive red dot ══ -->
+          <circle cx="335" cy="245" r="10" opacity="0.45" stroke-width="1.5"/>
+          <circle cx="335" cy="245" r="5" opacity="0.5" fill="#c77dff" fill-opacity="0.15"/>
+          <!-- ══ VOLUME SLIDER ══ -->
+          <rect x="370" y="235" width="80" height="10" rx="5" opacity="0.35"/>
+          <rect x="400" y="232" width="16" height="16" rx="4" opacity="0.45"/>
+          <!-- ══ HOLD SWITCH ══ (side) -->
+          <rect x="430" y="270" width="25" height="10" rx="5" opacity="0.25"/>
+          <!-- ══ HEADPHONE JACK ══ -->
+          <circle cx="55" cy="300" r="7" opacity="0.4"/>
+          <circle cx="55" cy="300" r="3" opacity="0.5"/>
+          <!-- ══ LINE OUT ══ -->
+          <circle cx="85" cy="300" r="5" opacity="0.3"/>
+          <!-- ══ SONY LOGO AREA ══ -->
+          <line x1="150" y1="295" x2="210" y2="295" opacity="0.2" stroke-width="1.5"/>
+          <!-- Battery lid lines -->
+          <rect x="320" y="275" width="70" height="25" rx="3" opacity="0.2"/>
+          <line x1="330" y1="287" x2="380" y2="287" opacity="0.1"/>
+        </svg>
+      </div>
+      <div class="era__header">
+        <span class="era__year-range">2000–2009</span>
+        <h2 class="era__name">Track 3</h2>
+        <span class="era__tagline">MiniDisc → CD</span>
+      </div>
+      <div class="era__tracks" id="tracks-00s"></div>
+    </section>
+
+    <!-- NOW PLAYING — 2010s -->
+    <section class="era era--2010s" data-era="2010s" id="era-2010s">
+      <div class="era__silhouette era__silhouette--left" aria-hidden="true">
+        <!-- iPhone with earbuds — the streaming era -->
+        <svg viewBox="0 0 300 520" fill="none" stroke="#7b2ff7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Phone body -->
+          <rect x="40" y="10" width="220" height="440" rx="32" opacity="0.55" stroke-width="2"/>
+          <!-- Screen -->
+          <rect x="48" y="22" width="204" height="416" rx="26" opacity="0.3"/>
+          <!-- Notch -->
+          <rect x="110" y="22" width="80" height="16" rx="8" opacity="0.35"/>
+          <!-- ══ STREAMING UI ON SCREEN ══ -->
+          <!-- Album art -->
+          <rect x="70" y="80" width="160" height="160" rx="8" opacity="0.3" stroke-width="1.5"/>
+          <!-- Disc/vinyl icon inside album art -->
+          <circle cx="150" cy="160" r="50" opacity="0.15"/>
+          <circle cx="150" cy="160" r="20" opacity="0.2"/>
+          <circle cx="150" cy="160" r="5" opacity="0.3"/>
+          <!-- Track name -->
+          <line x1="80" y1="265" x2="220" y2="265" opacity="0.35" stroke-width="2"/>
+          <!-- Artist -->
+          <line x1="100" y1="282" x2="200" y2="282" opacity="0.2"/>
+          <!-- Progress bar -->
+          <line x1="65" y1="310" x2="235" y2="310" opacity="0.2" stroke-width="2"/>
+          <line x1="65" y1="310" x2="160" y2="310" opacity="0.4" stroke-width="2"/>
+          <circle cx="160" cy="310" r="5" opacity="0.45" fill="#7b2ff7" fill-opacity="0.1"/>
+          <!-- Time -->
+          <line x1="65" y1="324" x2="85" y2="324" opacity="0.15"/>
+          <line x1="215" y1="324" x2="235" y2="324" opacity="0.15"/>
+          <!-- Transport controls -->
+          <!-- Skip back -->
+          <polygon points="95,365 80,375 95,385" opacity="0.3"/>
+          <line x1="80" y1="365" x2="80" y2="385" opacity="0.3"/>
+          <!-- Play -->
+          <circle cx="150" cy="375" r="22" opacity="0.4" stroke-width="1.5"/>
+          <polygon points="143,363 143,387 165,375" opacity="0.35" fill="#7b2ff7" fill-opacity="0.1"/>
+          <!-- Skip forward -->
+          <polygon points="205,365 220,375 205,385" opacity="0.3"/>
+          <line x1="220" y1="365" x2="220" y2="385" opacity="0.3"/>
+          <!-- Home indicator -->
+          <line x1="115" y1="442" x2="185" y2="442" opacity="0.25" stroke-width="3" stroke-linecap="round"/>
+          <!-- ══ EARBUDS dangling ══ -->
+          <!-- Left earbud wire -->
+          <path d="M150 460 C140 475, 100 480, 80 490 C60 500, 50 505, 40 510" opacity="0.3" stroke-width="1"/>
+          <!-- Left earbud -->
+          <ellipse cx="37" cy="513" rx="8" ry="10" opacity="0.4"/>
+          <!-- Right earbud wire -->
+          <path d="M150 460 C160 475, 200 480, 220 490 C240 500, 250 505, 260 510" opacity="0.3" stroke-width="1"/>
+          <!-- Right earbud -->
+          <ellipse cx="263" cy="513" rx="8" ry="10" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="era__header">
+        <span class="era__year-range">2010–2019</span>
+        <h2 class="era__name">Now Playing</h2>
+        <span class="era__tagline">Streaming</span>
+      </div>
+      <div class="era__tracks" id="tracks-2010s"></div>
+    </section>
+
+    <!-- THE B-SIDE — 2020s -->
+    <section class="era era--2020s" data-era="2020s" id="era-2020s">
+      <div class="era__silhouette era__silhouette--left" aria-hidden="true">
+        <!-- Gatefold vinyl + turntable — full circle, back to analog -->
+        <svg viewBox="0 0 550 500" fill="none" stroke="#ff2d95" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Gatefold sleeve — open -->
+          <rect x="10" y="80" width="250" height="340" rx="4" opacity="0.35" stroke-width="1.5"/>
+          <!-- Right panel of gatefold -->
+          <rect x="260" y="80" width="250" height="340" rx="4" opacity="0.25"/>
+          <!-- Spine -->
+          <line x1="260" y1="80" x2="260" y2="420" opacity="0.4"/>
+          <!-- Left panel art placeholder -->
+          <rect x="25" y="95" width="220" height="220" rx="2" opacity="0.15"/>
+          <!-- Credits/liner notes on left -->
+          <line x1="30" y1="330" x2="220" y2="330" opacity="0.15"/>
+          <line x1="30" y1="345" x2="200" y2="345" opacity="0.12"/>
+          <line x1="30" y1="360" x2="180" y2="360" opacity="0.1"/>
+          <line x1="30" y1="375" x2="160" y2="375" opacity="0.08"/>
+          <!-- The record itself — pulling out of the right panel -->
+          <circle cx="380" cy="250" r="158" opacity="0.5" stroke-width="2"/>
+          <!-- Grooves -->
+          <circle cx="380" cy="250" r="150" opacity="0.15"/>
+          <circle cx="380" cy="250" r="140" opacity="0.1" stroke-dasharray="1.5 3"/>
+          <circle cx="380" cy="250" r="130" opacity="0.1" stroke-dasharray="1.5 3"/>
+          <circle cx="380" cy="250" r="120" opacity="0.1" stroke-dasharray="1.5 3"/>
+          <circle cx="380" cy="250" r="110" opacity="0.1" stroke-dasharray="1.5 3"/>
+          <circle cx="380" cy="250" r="100" opacity="0.1" stroke-dasharray="1.5 3"/>
+          <circle cx="380" cy="250" r="90" opacity="0.1" stroke-dasharray="1.5 3"/>
+          <circle cx="380" cy="250" r="80" opacity="0.1" stroke-dasharray="1.5 3"/>
+          <!-- Label -->
+          <circle cx="380" cy="250" r="50" opacity="0.4" stroke-width="1.5"/>
+          <circle cx="380" cy="250" r="45" opacity="0.1" fill="#ff2d95" fill-opacity="0.03"/>
+          <!-- Label text -->
+          <line x1="355" y1="240" x2="405" y2="240" opacity="0.25"/>
+          <line x1="360" y1="250" x2="400" y2="250" opacity="0.2"/>
+          <line x1="365" y1="260" x2="395" y2="260" opacity="0.15"/>
+          <!-- Spindle hole -->
+          <circle cx="380" cy="250" r="4" opacity="0.7" fill="#ff2d95" fill-opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="era__header">
+        <span class="era__year-range">2020–2026</span>
+        <h2 class="era__name">The B-Side</h2>
+        <span class="era__tagline">Vinyl Redux</span>
+      </div>
+      <div class="era__tracks" id="tracks-2020s"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="https://open.spotify.com/playlist/3Kk6r9hmwCe0J8lKW7zG14" target="_blank" rel="noopener" class="footer__playlist-link">
+      <svg class="footer__spotify-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Listen on Spotify
+    </a>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50/50 — Crate Test</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600&family=Special+Elite&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/crate.css">
+</head>
+<body>
+
+  <!-- CRT Scanline Overlay -->
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- Film Grain -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- RECORD CRATE — scroll-driven dig -->
+  <!-- ════════════════════════════════════ -->
+  <section class="crate-section">
+    <div class="crate">
+      <div class="crate__records" id="crate-records">
+        <!-- Records injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/data.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Render Record Crate ────────────────
+      function renderCrate() {
+        const container = document.getElementById('crate-records');
+        if (!container) return;
+
+        TRACKS.forEach((track, i) => {
+          const record = document.createElement('div');
+          record.className = 'crate__record';
+          record.dataset.index = i;
+
+          record.innerHTML = `<img src="${track.imageUrl}" alt="" loading="eager">`;
+          container.appendChild(record);
+        });
+      }
+
+      // ── Crate Scroll Animation ─────────────
+      function initCrateAnimation() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const crateSection = document.querySelector('.crate-section');
+        const crate = document.querySelector('.crate');
+        const records = gsap.utils.toArray('.crate__record');
+        if (!crateSection || records.length === 0) return;
+
+        const numRecords = records.length;
+
+        // Set initial stacking
+        records.forEach((record, i) => {
+          gsap.set(record, {
+            zIndex: numRecords - i,
+            z: i * -6,
+            y: i * -4,
+            rotationX: i * 1,
+          });
+        });
+
+        // Build the flip-through timeline
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: crateSection,
+            pin: crate,
+            start: 'top top',
+            end: () => `+=${numRecords * 500}`,
+            scrub: 0.6,
+          }
+        });
+
+        records.forEach((record, i) => {
+          tl.to(record, {
+            rotationX: -80,
+            y: -180,
+            z: 150,
+            opacity: 0,
+            scale: 0.92,
+            duration: 1,
+            ease: 'power2.in',
+          }, i * 0.7);
+
+          if (i < numRecords - 1) {
+            tl.to(records[i + 1], {
+              y: 0,
+              z: 0,
+              rotationX: 0,
+              duration: 0.5,
+              ease: 'power1.out',
+            }, i * 0.7 + 0.3);
+          }
+        });
+      }
+
+      // ── Init ────────────────────────────────
+      document.addEventListener('DOMContentLoaded', () => {
+        renderCrate();
+        initCrateAnimation();
+      });
+    })();
+  </script>
+
+</body>
+</html>

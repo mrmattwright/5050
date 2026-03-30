@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50/50 — Edit Memories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --midnight: #1a0a2e;
+      --neon-pink: #ff2d95;
+      --electric-purple: #b026ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--black);
+      color: #e0d0f0;
+      font-family: 'Inter', -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .header { text-align: center; margin-bottom: 3rem; }
+    .header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, var(--neon-pink), var(--electric-purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .header p { color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 0.5rem; letter-spacing: 0.1em; }
+
+    /* ── Sections ── */
+    .section {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .section label {
+      display: block;
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--neon-pink); margin-bottom: 0.75rem;
+    }
+
+    .section textarea, .section input[type="text"], .section input[type="url"] {
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #e0d0f0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      padding: 0.8rem 1rem;
+      resize: vertical;
+    }
+    .section textarea { min-height: 100px; font-style: italic; }
+    .section input:focus, .section textarea:focus { outline: none; border-color: var(--neon-pink); }
+    .hint { font-size: 0.7rem; color: rgba(255,255,255,0.25); margin-top: 0.4rem; }
+
+    /* ── Add Track ── */
+    .add-track { display: flex; gap: 0.75rem; align-items: flex-end; }
+    .add-track__input { flex: 1; }
+    .add-track__input input { border-radius: 8px 0 0 8px; }
+    .add-track__status { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.5rem; min-height: 1.2em; }
+    .add-track__status.error { color: #ff6b6b; }
+    .add-track__status.success { color: var(--neon-pink); }
+
+    /* ── Era Dividers ── */
+    .era-divider {
+      max-width: 700px; margin: 2.5rem auto 1.5rem;
+      text-align: center; position: relative;
+    }
+    .era-divider::before {
+      content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+    }
+    .era-divider span {
+      position: relative; background: var(--black); padding: 0 1.5rem;
+      font-family: 'Orbitron', monospace; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--electric-purple);
+    }
+
+    /* ── Track Entries ── */
+    .track-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+
+    .track-entry {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; padding: 1rem; transition: border-color 0.2s; position: relative;
+    }
+    .track-entry:focus-within { border-color: rgba(255, 45, 149, 0.3); }
+    .track-entry.dragging { opacity: 0.5; }
+    .track-entry.drag-over { border-color: var(--neon-pink); border-style: dashed; }
+
+    .track-entry__art {
+      width: 80px; height: 80px; border-radius: 4px; object-fit: cover; flex-shrink: 0;
+    }
+    .track-entry__art-placeholder {
+      width: 80px; height: 80px; border-radius: 4px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--midnight), var(--electric-purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: rgba(255,255,255,0.2);
+    }
+
+    .track-entry__info { flex: 1; min-width: 0; }
+    .track-entry__title { font-size: 0.95rem; font-weight: 600; color: white; }
+    .track-entry__artist { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.1rem; }
+
+    .track-entry__fields { display: flex; gap: 0.75rem; margin-top: 0.5rem; flex-wrap: wrap; }
+
+    .track-entry__fields input,
+    .track-entry__fields select {
+      background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px; color: #e0d0f0; font-size: 0.7rem; padding: 0.3em 0.5em;
+    }
+    .track-entry__fields input[type="number"] { width: 65px; font-family: 'Orbitron', monospace; }
+    .track-entry__fields select { width: 85px; font-family: 'Inter', sans-serif; }
+    .track-entry__fields input:focus, .track-entry__fields select:focus { outline: none; border-color: var(--neon-pink); }
+
+    .track-entry textarea {
+      width: 100%; min-height: 45px; margin-top: 0.5rem;
+      background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px; color: #e0d0f0; font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; font-style: italic; line-height: 1.5; padding: 0.6rem; resize: vertical;
+    }
+    .track-entry textarea:focus { outline: none; border-color: var(--neon-pink); }
+    .track-entry textarea::placeholder { color: rgba(255,255,255,0.2); font-style: italic; }
+
+    /* Delete button */
+    .track-entry__delete {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1); background: transparent;
+      color: rgba(255,255,255,0.3); font-size: 0.8rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; opacity: 0;
+    }
+    .track-entry:hover .track-entry__delete { opacity: 1; }
+    .track-entry__delete:hover { border-color: #ff6b6b; color: #ff6b6b; background: rgba(255,100,100,0.1); }
+
+    /* Drag handle */
+    .track-entry__drag {
+      cursor: grab; color: rgba(255,255,255,0.15); font-size: 1.2rem;
+      padding: 0.2rem; user-select: none; align-self: center;
+    }
+    .track-entry__drag:active { cursor: grabbing; }
+
+    /* ── Actions ── */
+    .actions {
+      max-width: 700px; margin: 2.5rem auto;
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 2rem; border: 1px solid rgba(255, 45, 149, 0.4);
+      border-radius: 50px; background: transparent; color: var(--neon-pink);
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease;
+    }
+    .btn:hover { background: rgba(255, 45, 149, 0.12); border-color: var(--neon-pink); box-shadow: 0 0 20px rgba(255, 45, 149, 0.2); }
+    .btn--primary { background: rgba(255, 45, 149, 0.15); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .status { text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 1rem; }
+    .status.saved { color: var(--neon-pink); }
+
+    .counter {
+      max-width: 700px; margin: 0 auto 2rem; text-align: center;
+      font-family: 'Orbitron', monospace; font-size: 0.7rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.25);
+    }
+    .counter strong { color: var(--neon-pink); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>50/50</h1>
+    <p>Edit your memories</p>
+  </div>
+
+  <!-- Intro paragraph -->
+  <div class="section">
+    <label>Liner Notes — Intro Paragraph</label>
+    <textarea id="intro-text" placeholder="Write your intro here... This appears between the vinyl record and the track list."></textarea>
+    <div class="hint">This text appears after the spinning record, before the crate dig. Set the scene.</div>
+  </div>
+
+  <!-- Add track -->
+  <div class="section">
+    <label>Add a Track</label>
+    <div class="add-track">
+      <div class="add-track__input" style="flex:1">
+        <input type="url" id="add-url" placeholder="Paste a Spotify track URL..." style="width:100%">
+      </div>
+      <button class="btn" id="add-btn" style="padding:0.55rem 1.5rem; white-space:nowrap;">+ Add</button>
+    </div>
+    <div class="add-track__status" id="add-status"></div>
+    <div class="hint">Paste a Spotify track link (e.g. https://open.spotify.com/track/...) and we'll fetch the details.</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="counter">
+    <span id="memory-count">0</span> / <strong id="track-count">0</strong> memories written
+  </div>
+
+  <!-- Track list -->
+  <div class="track-list" id="track-list"></div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn--primary" id="save-btn">Save data.js</button>
+    <button class="btn" id="preview-btn">Preview Site</button>
+  </div>
+  <div class="status" id="status"></div>
+
+  <script src="../js/data.js"></script>
+  <script>
+    // ── State — DOM is source of truth, this seeds it ──
+    let tracks = (typeof TRACKS !== 'undefined' ? TRACKS : []).map(t => ({...t}));
+
+    const trackListEl = document.getElementById('track-list');
+    const introTextarea = document.getElementById('intro-text');
+    const statusEl = document.getElementById('status');
+    const memoryCountEl = document.getElementById('memory-count');
+    const trackCountEl = document.getElementById('track-count');
+    const addUrlInput = document.getElementById('add-url');
+    const addBtn = document.getElementById('add-btn');
+    const addStatus = document.getElementById('add-status');
+
+    const eraOrder = ['80s', '90s', '00s', '2010s', '2020s'];
+    const eraNames = {
+      '80s': 'Side A — 1980s — Vinyl',
+      '90s': 'Side B — 1990s — Cassette → 1200s',
+      '00s': 'Track 3 — 2000s — MiniDisc → CD',
+      '2010s': 'Now Playing — 2010s — Streaming',
+      '2020s': 'The B-Side — 2020s — Vinyl Redux'
+    };
+
+    function assignEra(year) {
+      if (!year || year < 1990) return '80s';
+      if (year < 2000) return '90s';
+      if (year < 2010) return '00s';
+      if (year < 2020) return '2010s';
+      return '2020s';
+    }
+
+    // Populate intro
+    if (typeof INTRO_TEXT !== 'undefined') introTextarea.value = INTRO_TEXT;
+
+    // ── Render all tracks ──
+    function renderAll() {
+      trackListEl.innerHTML = '';
+      let currentEra = null;
+
+      tracks.forEach((track, i) => {
+        if (track.era !== currentEra) {
+          currentEra = track.era;
+          const divider = document.createElement('div');
+          divider.className = 'era-divider';
+          divider.innerHTML = `<span>${eraNames[track.era] || track.era}</span>`;
+          trackListEl.appendChild(divider);
+        }
+        trackListEl.appendChild(createTrackEntry(track, i));
+      });
+
+      trackCountEl.textContent = tracks.length;
+      updateCounter();
+    }
+
+    function createTrackEntry(track, index) {
+      const entry = document.createElement('div');
+      entry.className = 'track-entry';
+      entry.dataset.index = index;
+      entry.draggable = true;
+
+      const artHtml = track.imageUrl
+        ? `<img class="track-entry__art" src="${track.imageUrl.startsWith('http') ? track.imageUrl : '../' + track.imageUrl}" alt="${track.title}">`
+        : `<div class="track-entry__art-placeholder">&#9835;</div>`;
+
+      entry.innerHTML = `
+        <div class="track-entry__drag" title="Drag to reorder">&#8942;&#8942;</div>
+        ${artHtml}
+        <div class="track-entry__info">
+          <div class="track-entry__title">${track.title}</div>
+          <div class="track-entry__artist">${track.artist}</div>
+          <div class="track-entry__fields">
+            <input type="number" class="year-input" value="${track.year || ''}" min="1976" max="2026" placeholder="Year" title="Personal year">
+            <select class="era-input" title="Era">
+              ${eraOrder.map(e => `<option value="${e}" ${e === track.era ? 'selected' : ''}>${e}</option>`).join('')}
+            </select>
+          </div>
+          <textarea class="message-input" placeholder="Your memory of this track...">${track.message || ''}</textarea>
+        </div>
+        <button class="track-entry__delete" title="Remove track">&times;</button>
+      `;
+
+      // Delete
+      entry.querySelector('.track-entry__delete').addEventListener('click', () => {
+        if (confirm(`Remove "${track.title}"?`)) {
+          tracks.splice(index, 1);
+          renderAll();
+        }
+      });
+
+      // Sync edits back to tracks array
+      entry.querySelector('.year-input').addEventListener('change', (e) => {
+        tracks[index].year = parseInt(e.target.value) || null;
+      });
+      entry.querySelector('.era-input').addEventListener('change', (e) => {
+        tracks[index].era = e.target.value;
+      });
+      entry.querySelector('.message-input').addEventListener('input', (e) => {
+        tracks[index].message = e.target.value;
+        updateCounter();
+      });
+
+      // Drag & drop reorder
+      entry.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', index);
+        entry.classList.add('dragging');
+      });
+      entry.addEventListener('dragend', () => entry.classList.remove('dragging'));
+      entry.addEventListener('dragover', (e) => { e.preventDefault(); entry.classList.add('drag-over'); });
+      entry.addEventListener('dragleave', () => entry.classList.remove('drag-over'));
+      entry.addEventListener('drop', (e) => {
+        e.preventDefault();
+        entry.classList.remove('drag-over');
+        const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+        const toIndex = index;
+        if (fromIndex === toIndex) return;
+        const [moved] = tracks.splice(fromIndex, 1);
+        tracks.splice(toIndex, 0, moved);
+        renderAll();
+      });
+
+      return entry;
+    }
+
+    function updateCounter() {
+      let count = 0;
+      tracks.forEach(t => { if (t.message && t.message.trim()) count++; });
+      memoryCountEl.textContent = count;
+    }
+
+    // ── Add Track via Spotify oEmbed ──
+    addBtn.addEventListener('click', addTrack);
+    addUrlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addTrack(); });
+
+    async function addTrack() {
+      const url = addUrlInput.value.trim();
+      if (!url) return;
+
+      // Extract track ID
+      const match = url.match(/track\/([a-zA-Z0-9]+)/);
+      if (!match) {
+        addStatus.textContent = 'Not a valid Spotify track URL';
+        addStatus.className = 'add-track__status error';
+        return;
+      }
+
+      const trackId = match[1];
+      const spotifyUrl = `https://open.spotify.com/track/${trackId}`;
+
+      // Check for duplicates
+      if (tracks.some(t => t.spotifyUrl === spotifyUrl)) {
+        addStatus.textContent = 'Track already in the list';
+        addStatus.className = 'add-track__status error';
+        return;
+      }
+
+      addBtn.disabled = true;
+      addStatus.textContent = 'Fetching track info...';
+      addStatus.className = 'add-track__status';
+
+      try {
+        const oembedUrl = `https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`;
+        const res = await fetch(oembedUrl);
+        if (!res.ok) throw new Error('oEmbed request failed');
+        const data = await res.json();
+
+        // Parse title — oEmbed returns "Track Name by Artist Name"
+        let title = data.title || '';
+        let artist = '';
+        const byMatch = title.match(/^(.+?)\s+by\s+(.+)$/i);
+        if (byMatch) {
+          title = byMatch[1].trim();
+          artist = byMatch[2].trim();
+        }
+
+        const newTrack = {
+          title: title,
+          artist: artist,
+          year: null,
+          era: '2020s',
+          imageUrl: data.thumbnail_url || '',
+          spotifyUrl: spotifyUrl,
+          message: ''
+        };
+
+        tracks.push(newTrack);
+        renderAll();
+
+        addUrlInput.value = '';
+        addStatus.textContent = `Added "${title}" by ${artist}`;
+        addStatus.className = 'add-track__status success';
+
+        // Scroll to the new entry
+        const lastEntry = trackListEl.querySelector('.track-entry:last-of-type');
+        if (lastEntry) lastEntry.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      } catch (err) {
+        addStatus.textContent = 'Could not fetch track info — check the URL';
+        addStatus.className = 'add-track__status error';
+      }
+
+      addBtn.disabled = false;
+    }
+
+    // ── Generate data.js ──
+    function generateDataJs() {
+      const introVal = introTextarea.value.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+      let js = `// Intro paragraph \u2014 displayed as liner notes between the hero and the crate\nconst INTRO_TEXT = "${introVal}";\n\n`;
+      js += '// Playlist order IS the timeline \u2014 don\'t reorder by release year\nconst TRACKS = [\n';
+
+      let currentEra = null;
+      tracks.forEach((track, i) => {
+        const era = track.era || '80s';
+        if (era !== currentEra) {
+          currentEra = era;
+          const eraInfo = typeof ERAS !== 'undefined' ? ERAS[era] : null;
+          const eraName = eraInfo ? eraInfo.name : era;
+          const tagline = eraInfo ? eraInfo.tagline : '';
+          const yearRange = eraInfo ? eraInfo.years : '';
+          if (i > 0) js += '\n';
+          js += `  // ${'\u2550'.repeat(39)}\n`;
+          js += `  // ${eraName.toUpperCase()} \u2014 ${yearRange} \u2014 ${tagline}\n`;
+          js += `  // ${'\u2550'.repeat(39)}\n`;
+        }
+
+        const esc = (s) => (s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+
+        js += '  {\n';
+        js += `    title: "${esc(track.title)}",\n`;
+        js += `    artist: "${esc(track.artist)}",\n`;
+        js += `    year: ${track.year || 'null'},\n`;
+        js += `    era: "${era}",\n`;
+        js += `    imageUrl: "${esc(track.imageUrl)}",\n`;
+        js += `    spotifyUrl: "${esc(track.spotifyUrl)}",\n`;
+        js += `    message: "${esc(track.message)}"\n`;
+        js += `  }${i < tracks.length - 1 ? ',' : ''}\n`;
+      });
+
+      js += '];\n\n';
+      js += `const PLAYLIST_URL = "${typeof PLAYLIST_URL !== 'undefined' ? PLAYLIST_URL : ''}";\n\n`;
+      if (typeof ERAS !== 'undefined') {
+        js += 'const ERAS = ' + JSON.stringify(ERAS, null, 2) + ';\n';
+      }
+      return js;
+    }
+
+    // ── Save ──
+    document.getElementById('save-btn').addEventListener('click', async () => {
+      const content = generateDataJs();
+
+      // Try direct save via admin server
+      try {
+        const res = await fetch('/api/save-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: content
+        });
+        const result = await res.json();
+        if (result.ok) {
+          statusEl.textContent = 'Saved! Refresh the site to see changes.';
+          statusEl.className = 'status saved';
+          return;
+        }
+      } catch (e) {
+        // Admin server not running — fall back to download
+      }
+
+      // Fallback: download the file
+      const blob = new Blob([content], { type: 'application/javascript' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'data.js';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      statusEl.textContent = 'Downloaded data.js \u2014 move it to js/data.js (run admin-server.js for direct save)';
+      statusEl.className = 'status saved';
+    });
+
+    // ── Preview ──
+    document.getElementById('preview-btn').addEventListener('click', () => {
+      window.open('../index.html', '_blank');
+    });
+
+    // ── Init ──
+    renderAll();
+  </script>
+</body>
+</html>

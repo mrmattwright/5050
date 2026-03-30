@@ -1,0 +1,74 @@
+/* ── RECORD CRATE ─────────────────────────── */
+.crate-section {
+  position: relative;
+  background: var(--black);
+}
+
+.crate {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  /* Shared perspective — all records share one vanishing point */
+  perspective: 1000px;
+  /* Slightly below center — looking down into the crate */
+  perspective-origin: 50% 55%;
+  overflow: hidden;
+}
+
+.crate__records {
+  display: grid;
+  place-items: center;
+  width: min(360px, 72vw);
+  aspect-ratio: 1;
+}
+
+.crate__record {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  /* Bottom-center pivot — records hinge from their bottom edge */
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.crate__record img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* Vinyl edge peeking out at top of each record */
+.crate__record::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 10%;
+  right: 10%;
+  height: 6px;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(to right, #111, #1a1a1a, #111);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+/* Dark edge shadow on each record sleeve */
+.crate__record::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  pointer-events: none;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}

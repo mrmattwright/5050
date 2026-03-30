@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 480" fill="none" stroke="#7b2ff7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Phone body -->
+  <rect x="20" y="10" width="200" height="460" rx="30" opacity="0.5"/>
+  <!-- Screen -->
+  <rect x="30" y="50" width="180" height="380" rx="4" opacity="0.3"/>
+  <!-- Status bar -->
+  <line x1="45" y1="65" x2="80" y2="65" opacity="0.15"/>
+  <line x1="160" y1="65" x2="195" y2="65" opacity="0.15"/>
+  <!-- Album art placeholder -->
+  <rect x="55" y="100" width="130" height="130" rx="6" opacity="0.25"/>
+  <!-- Track title lines -->
+  <line x1="65" y1="260" x2="175" y2="260" opacity="0.3"/>
+  <line x1="85" y1="278" x2="155" y2="278" opacity="0.15"/>
+  <!-- Progress bar -->
+  <line x1="50" y1="310" x2="190" y2="310" opacity="0.15"/>
+  <line x1="50" y1="310" x2="120" y2="310" opacity="0.35"/>
+  <circle cx="120" cy="310" r="4" opacity="0.4"/>
+  <!-- Time stamps -->
+  <line x1="50" y1="322" x2="70" y2="322" opacity="0.1"/>
+  <line x1="170" y1="322" x2="190" y2="322" opacity="0.1"/>
+  <!-- Controls -->
+  <!-- Skip back -->
+  <polygon points="75,360 60,370 75,380" opacity="0.25"/>
+  <line x1="60" y1="360" x2="60" y2="380" opacity="0.25"/>
+  <!-- Play -->
+  <circle cx="120" cy="370" r="18" opacity="0.35"/>
+  <polygon points="114,360 114,380 132,370" opacity="0.3" fill="#7b2ff7"/>
+  <!-- Skip forward -->
+  <polygon points="165,360 180,370 165,380" opacity="0.25"/>
+  <line x1="180" y1="360" x2="180" y2="380" opacity="0.25"/>
+  <!-- EQ bars at bottom -->
+  <line x1="60" y1="420" x2="60" y2="405" opacity="0.15"/>
+  <line x1="75" y1="420" x2="75" y2="395" opacity="0.2"/>
+  <line x1="90" y1="420" x2="90" y2="400" opacity="0.18"/>
+  <line x1="105" y1="420" x2="105" y2="390" opacity="0.22"/>
+  <line x1="120" y1="420" x2="120" y2="398" opacity="0.19"/>
+  <line x1="135" y1="420" x2="135" y2="392" opacity="0.21"/>
+  <line x1="150" y1="420" x2="150" y2="402" opacity="0.17"/>
+  <line x1="165" y1="420" x2="165" y2="396" opacity="0.2"/>
+  <line x1="180" y1="420" x2="180" y2="408" opacity="0.14"/>
+  <!-- Home indicator -->
+  <line x1="90" y1="450" x2="150" y2="450" opacity="0.2" stroke-width="3" stroke-linecap="round"/>
+</svg>

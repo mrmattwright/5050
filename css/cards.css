@@ -1,0 +1,304 @@
+/* ── TRACK CARDS ──────────────────────────── */
+.era__tracks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.track-card {
+  width: var(--card-size);
+  aspect-ratio: 1;
+  perspective: 800px;
+  cursor: pointer;
+  position: relative;
+}
+
+.track-card__inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.track-card.flipped .track-card__inner {
+  transform: rotateY(180deg);
+}
+
+/* Desktop hover flip */
+@media (hover: hover) {
+  .track-card:hover .track-card__inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.track-card__front,
+.track-card__back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ── Card Front ─── */
+.track-card__front {
+  background: var(--deep-purple);
+}
+
+.track-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.track-card__year-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-family: var(--font-digital);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.2em 0.5em;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--era-accent);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.track-card__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 0.75rem 0.75rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+}
+
+.track-card__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1.2;
+}
+
+.track-card__artist {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.15rem;
+}
+
+/* ── Card Back ─── */
+.track-card__back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, var(--midnight), #2d1b4e);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 0.5rem;
+}
+
+.track-card__message {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.track-card__message:empty::after {
+  content: "Memory loading...";
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.track-card__play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--neon-pink);
+  padding: 0.6em 1.4em;
+  border: 1px solid rgba(255, 45, 149, 0.35);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.track-card__play-btn:hover {
+  background: rgba(255, 45, 149, 0.12);
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 20px rgba(255, 45, 149, 0.25);
+  color: white;
+}
+
+.track-card__play-btn svg {
+  flex-shrink: 0;
+}
+
+.track-card__spotify-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--era-accent);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.track-card__spotify-link:hover {
+  text-shadow: 0 0 10px var(--era-glow);
+}
+
+.track-card__spotify-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.track-card__back-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--era-accent);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.track-card__back-artist {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.5rem;
+}
+
+/* ── ERA-SPECIFIC CARD FRAMES ─────────────── */
+
+/* 80s — Torn edges, slightly askew, taped down, neon glow */
+.era--80s .track-card {
+  transform: rotate(-1.5deg);
+}
+
+.era--80s .track-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.era--80s .track-card__front {
+  box-shadow:
+    0 0 20px rgba(255, 45, 149, 0.3),
+    0 0 40px rgba(255, 45, 149, 0.1),
+    4px 4px 0 rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 45, 149, 0.3);
+}
+
+/* Tape strips on 80s cards */
+.era--80s .track-card__front::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 60px;
+  height: 18px;
+  background: rgba(255, 255, 200, 0.15);
+  border: 1px solid rgba(255, 255, 200, 0.08);
+  z-index: 20;
+}
+
+/* 90s — Grungier, VHS distortion, cassette vibe */
+.era--90s .track-card {
+  transform: rotate(0.5deg);
+}
+
+.era--90s .track-card:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+
+.era--90s .track-card__front {
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(139, 0, 255, 0.2);
+  filter: contrast(1.1) saturate(0.9);
+}
+
+/* 00s — Jewel case / iridescent shimmer */
+.era--00s .track-card {
+  transform: rotate(0deg);
+}
+
+.era--00s .track-card__front {
+  border: 2px solid rgba(199, 125, 255, 0.2);
+  box-shadow:
+    0 0 15px rgba(199, 125, 255, 0.15),
+    inset 0 0 30px rgba(199, 125, 255, 0.05);
+}
+
+/* Iridescent shimmer overlay */
+.era--00s .track-card__front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(199, 125, 255, 0.1) 25%,
+    rgba(0, 240, 255, 0.08) 50%,
+    rgba(255, 45, 149, 0.1) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 5;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* 2010s — Clean, minimal, flat */
+.era--2010s .track-card {
+  transform: rotate(0deg);
+}
+
+.era--2010s .track-card__front {
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.era--2010s .track-card__back {
+  border-radius: 8px;
+}
+
+/* 2020s — Gatefold, premium, warm glow */
+.era--2020s .track-card {
+  transform: rotate(-0.5deg);
+  --card-size: min(320px, 85vw);
+}
+
+.era--2020s .track-card__front {
+  box-shadow:
+    0 0 30px rgba(255, 45, 149, 0.2),
+    0 0 60px rgba(255, 45, 149, 0.1);
+  border: 1px solid rgba(255, 45, 149, 0.2);
+}

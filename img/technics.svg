@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" stroke="#b026ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Deck base -->
+  <rect x="10" y="50" width="380" height="310" rx="6" opacity="0.5"/>
+  <!-- Top panel -->
+  <rect x="20" y="55" width="360" height="295" rx="4" opacity="0.3"/>
+  <!-- Platter -->
+  <circle cx="170" cy="210" r="125" opacity="0.4"/>
+  <circle cx="170" cy="210" r="115" opacity="0.25"/>
+  <!-- Platter dots (technics style) -->
+  <circle cx="170" cy="85" r="2" opacity="0.3"/>
+  <circle cx="262" cy="130" r="2" opacity="0.3"/>
+  <circle cx="295" cy="210" r="2" opacity="0.3"/>
+  <circle cx="262" cy="290" r="2" opacity="0.3"/>
+  <circle cx="170" cy="335" r="2" opacity="0.3"/>
+  <circle cx="78" cy="290" r="2" opacity="0.3"/>
+  <circle cx="45" cy="210" r="2" opacity="0.3"/>
+  <circle cx="78" cy="130" r="2" opacity="0.3"/>
+  <!-- Record on platter -->
+  <circle cx="170" cy="210" r="100" opacity="0.2"/>
+  <circle cx="170" cy="210" r="80" opacity="0.15"/>
+  <circle cx="170" cy="210" r="60" opacity="0.1"/>
+  <!-- Label -->
+  <circle cx="170" cy="210" r="25" opacity="0.35"/>
+  <circle cx="170" cy="210" r="5" opacity="0.5"/>
+  <!-- Tone arm pillar -->
+  <circle cx="350" cy="100" r="12" opacity="0.5"/>
+  <!-- Tone arm -->
+  <line x1="350" y1="100" x2="335" y2="95" opacity="0.5"/>
+  <line x1="335" y1="95" x2="240" y2="180" opacity="0.5"/>
+  <line x1="240" y1="180" x2="225" y2="195" opacity="0.6"/>
+  <!-- Cartridge -->
+  <rect x="218" y="190" width="14" height="10" rx="1" opacity="0.5"/>
+  <!-- Pitch slider area -->
+  <rect x="330" y="170" width="40" height="140" rx="4" opacity="0.25"/>
+  <line x1="350" y1="185" x2="350" y2="295" opacity="0.3"/>
+  <rect x="345" y="230" width="10" height="20" rx="2" opacity="0.4"/>
+  <!-- Start/stop button -->
+  <circle cx="350" cy="330" r="8" opacity="0.3"/>
+  <!-- 33/45 switch -->
+  <rect x="55" y="330" width="30" height="10" rx="3" opacity="0.25"/>
+  <!-- Power indicator -->
+  <circle cx="40" cy="70" r="3" opacity="0.4"/>
+</svg>

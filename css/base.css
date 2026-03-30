@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════
+   50/50 — Fifty Songs for Fifty Years
+   Purple Disco Machine meets Miami Vice
+   ═══════════════════════════════════════════════ */
+
+/* ── Reset & Base ──────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Core palette */
+  --black: #0a0a0a;
+  --midnight: #1a0a2e;
+  --deep-purple: #2d1b4e;
+  --neon-pink: #ff2d95;
+  --electric-purple: #b026ff;
+  --hot-magenta: #ff00ff;
+  --cyan: #00f0ff;
+  --warm-gold: #ffd700;
+  --soft-pink: #ff6eb4;
+  --chrome: #c0c0c0;
+
+  /* Era-specific accents (set via JS) */
+  --era-accent: var(--neon-pink);
+  --era-bg-start: var(--midnight);
+  --era-bg-end: var(--black);
+  --era-glow: var(--neon-pink);
+
+  /* Typography */
+  --font-display: 'Pacifico', cursive;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-grunge: 'Special Elite', cursive;
+  --font-digital: 'Orbitron', monospace;
+
+  /* Spacing */
+  --card-size: min(280px, 80vw);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--black);
+  color: #e0d0f0;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── CRT Scanline Overlay ─────────────────── */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  opacity: var(--crt-opacity, 0.4);
+  transition: opacity 1s ease;
+}
+
+/* ── Film Grain Overlay ───────────────────── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: var(--grain-opacity, 0.06);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 256px;
+  /* static grain — no animation */
+  transition: opacity 1s ease;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
+/* ── Year Counter ─────────────────────────── */
+.year-counter {
+  position: fixed;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.year-counter.visible {
+  opacity: 1;
+}
+
+.year-counter__value {
+  font-family: var(--font-digital);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--era-accent);
+  text-shadow:
+    0 0 10px var(--era-glow),
+    0 0 30px var(--era-glow),
+    0 0 60px var(--era-glow);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.1em;
+  transition: color 0.8s ease, text-shadow 0.8s ease;
+}
+
+/* ── Era Navigation ───────────────────────── */
+.era-nav {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.era-nav.visible {
+  opacity: 1;
+}
+
+.era-nav__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.era-nav__dot:hover,
+.era-nav__dot.active {
+  border-color: var(--neon-pink);
+  background: var(--neon-pink);
+  box-shadow: 0 0 12px var(--neon-pink), 0 0 24px var(--neon-pink);
+}
+
+.era-nav__label {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--neon-pink);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.era-nav__dot:hover .era-nav__label {
+  opacity: 1;
+}

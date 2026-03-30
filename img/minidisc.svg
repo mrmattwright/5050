@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none" stroke="#c77dff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- MiniDisc player body -->
+  <rect x="50" y="40" width="300" height="220" rx="20" opacity="0.5"/>
+  <!-- Inner frame -->
+  <rect x="65" y="55" width="270" height="190" rx="14" opacity="0.3"/>
+  <!-- Disc window -->
+  <rect x="90" y="70" width="160" height="140" rx="8" opacity="0.35"/>
+  <!-- MiniDisc inside -->
+  <rect x="100" y="80" width="140" height="120" rx="6" opacity="0.2"/>
+  <!-- Disc center hub -->
+  <circle cx="170" cy="140" r="18" opacity="0.3"/>
+  <circle cx="170" cy="140" r="6" opacity="0.4"/>
+  <!-- Disc shutter -->
+  <rect x="100" y="80" width="140" height="15" rx="2" opacity="0.25"/>
+  <line x1="160" y1="80" x2="160" y2="95" opacity="0.15"/>
+  <!-- LCD display -->
+  <rect x="270" y="80" width="55" height="30" rx="3" opacity="0.4"/>
+  <line x1="278" y1="92" x2="318" y2="92" opacity="0.2"/>
+  <line x1="278" y1="100" x2="305" y2="100" opacity="0.2"/>
+  <!-- Buttons -->
+  <circle cx="280" cy="135" r="6" opacity="0.3"/>
+  <circle cx="300" cy="135" r="6" opacity="0.3"/>
+  <circle cx="320" cy="135" r="6" opacity="0.3"/>
+  <!-- Play/stop row -->
+  <rect x="270" y="155" width="15" height="10" rx="2" opacity="0.25"/>
+  <rect x="290" y="155" width="15" height="10" rx="2" opacity="0.25"/>
+  <rect x="310" y="155" width="15" height="10" rx="2" opacity="0.25"/>
+  <!-- Skip buttons -->
+  <polygon points="275,180 285,185 275,190" opacity="0.2"/>
+  <polygon points="325,180 315,185 325,190" opacity="0.2"/>
+  <!-- Volume wheel -->
+  <rect x="280" y="200" width="40" height="12" rx="6" opacity="0.3"/>
+  <!-- Headphone jack -->
+  <circle cx="80" cy="240" r="5" opacity="0.3"/>
+  <!-- HOLD switch -->
+  <rect x="300" y="235" width="25" height="8" rx="4" opacity="0.2"/>
+</svg>
