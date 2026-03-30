@@ -115,7 +115,6 @@
     0 0 20px rgba(255, 45, 149, 0.2),
     inset 0 0 15px rgba(0, 0, 0, 0.4);
   animation: vinyl-spin-reverse 20s linear infinite;
-  position: relative;
 }
 
 @keyframes vinyl-spin-reverse {
