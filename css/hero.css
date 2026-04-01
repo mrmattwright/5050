@@ -236,8 +236,14 @@
     display: none;
   }
 
+  .hero__vinyl {
+    animation: none;
+  }
+
   .hero__vinyl-label {
     width: 48%;
+    animation: none;
+    transform: translate(-50%, -50%);
   }
 
   .hero__label-title {
