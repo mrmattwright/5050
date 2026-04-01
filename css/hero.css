@@ -202,6 +202,41 @@
   flex-shrink: 0;
 }
 
+/* Mobile Spotify link — above record */
+.hero__spotify-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero__spotify-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--neon-pink);
+    padding: 0.5em 1.2em;
+    border: 1px solid rgba(255, 45, 149, 0.3);
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    z-index: 20;
+  }
+
+  .hero__spotify-mobile:hover {
+    background: rgba(255, 45, 149, 0.1);
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px rgba(255, 45, 149, 0.3);
+  }
+
+  .hero__label-spotify {
+    display: none;
+  }
+}
+
 /* Record spins faster when playing */
 .hero__vinyl.playing {
   animation-duration: 1.8s;
