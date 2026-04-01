@@ -277,7 +277,7 @@ const TRACKS = [
     era: "2010s",
     imageUrl: "img/covers/29-awolnation.jpg",
     spotifyUrl: "https://open.spotify.com/track/7hsLKGEnoiNShdIGL6ws1f",
-    message: ""
+    message: "Cham Fam. Ski Buddy days with Ellen, wild adventure with Seth. Flatting with Jane. Les Caves. "
   },
   {
     title: "What You Know",
