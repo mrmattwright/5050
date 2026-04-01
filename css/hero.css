@@ -235,6 +235,33 @@
   .hero__label-spotify {
     display: none;
   }
+
+  .hero__vinyl-label {
+    width: 48%;
+  }
+
+  .hero__label-title {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    top: 15%;
+  }
+
+  .hero__label-a,
+  .hero__label-lp {
+    font-size: clamp(0.65rem, 2vw, 1rem);
+  }
+
+  .hero__label-side,
+  .hero__label-rpm {
+    font-size: clamp(0.3rem, 1vw, 0.5rem);
+  }
+
+  .hero__label-middle {
+    padding: 0 15%;
+  }
+
+  .hero__vinyl-hole {
+    width: 6%;
+  }
 }
 
 /* Record spins faster when playing */
