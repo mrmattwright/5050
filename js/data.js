@@ -213,6 +213,15 @@ const TRACKS = [
     message: "Snowboarding season with Alex and Matt in Morzine. "
   },
   {
+    title: "California (From \"The OC\")",
+    artist: "Geek Music",
+    year: 2004,
+    era: "00s",
+    imageUrl: "img/covers/23-geek-music.jpg",
+    spotifyUrl: "https://open.spotify.com/track/02JHoFePpcjbRnkEj3GdK8",
+    message: "Flatting with Rico, Al and Sus - The OC and the Mighty Boosh. "
+  },
+  {
     title: "Somebody Told Me",
     artist: "The Killers",
     year: 2004,
@@ -305,6 +314,15 @@ const TRACKS = [
     imageUrl: "img/covers/29-ratatat.jpg",
     spotifyUrl: "https://open.spotify.com/track/3s25iX3minD5jORW4KpANZ",
     message: "Wild gig at the Brixton Academy with Richard. "
+  },
+  {
+    title: "The Night",
+    artist: "Frankie Valli & The Four Seasons",
+    year: 1975,
+    era: "2010s",
+    imageUrl: "img/covers/34-frankie-valli.jpg",
+    spotifyUrl: "https://open.spotify.com/track/31ijr2O0SsuzAPVDLnq3XV",
+    message: "Discovering my Northern Soul."
   },
   {
     title: "Leave This Island",
