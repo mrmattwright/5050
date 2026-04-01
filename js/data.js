@@ -213,12 +213,12 @@ const TRACKS = [
     message: "Snowboarding season with Alex and Matt in Morzine. "
   },
   {
-    title: "California (From \"The OC\")",
-    artist: "Geek Music",
+    title: "California",
+    artist: "Phantom Planet",
     year: 2004,
     era: "00s",
     imageUrl: "img/covers/23-geek-music.jpg",
-    spotifyUrl: "https://open.spotify.com/track/02JHoFePpcjbRnkEj3GdK8",
+    spotifyUrl: "https://open.spotify.com/track/2LFMWAOFyVJypKBgOFfdok",
     message: "Flatting with Rico, Al and Sus - The OC and the Mighty Boosh. "
   },
   {
