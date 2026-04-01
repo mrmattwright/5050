@@ -303,7 +303,7 @@ const TRACKS = [
     year: 2014,
     era: "2010s",
     imageUrl: "img/covers/30-royal-blood.jpg",
-    spotifyUrl: "https://open.spotify.com/track/0Bpy92d4H4Ttb68UUUReJG",
+    spotifyUrl: "https://open.spotify.com/track/3MjrueDQKVr6xDDseZwhEd",
     message: "Stitched Crew.  Richard, Felix and Ian Harris - headphones on drumming like a madman building amazing things. "
   },
   {
