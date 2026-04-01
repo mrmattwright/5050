@@ -22,8 +22,8 @@
     });
   }
 
-  // ── Crate Scroll Animation ─────────────
-  // GSAP timeline — records hinge from bottom edge like thumbing through a crate
+  // ── Crate Auto-Play Animation ───────────
+  // Auto-flips through records in ~3s when section enters view, then scrolls to first era
   function initCrateAnimation() {
     const crateSection = document.querySelector('.crate-section');
     const crate = document.querySelector('.crate');
@@ -31,51 +31,114 @@
     if (!crateSection || records.length === 0) return;
 
     const numRecords = records.length;
+    const stagger = 3 / numRecords; // spread all flips across 3 seconds
 
-    // Set initial stacking — each card sits slightly further back, peeking above
+    // Set initial stacking
     records.forEach((record, i) => {
       gsap.set(record, {
         zIndex: numRecords - i,
         z: i * -6,
         y: i * -4,
-        rotationX: i * 1,  // very slight lean-back for depth
+        rotationX: i * 1,
       });
     });
 
-    // Build the flip-through timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: crateSection,
-        pin: crate,
-        start: 'top top',
-        end: () => `+=${numRecords * 500}`,
-        scrub: 0.6,
-      }
-    });
+    // Build the auto-play timeline (paused until triggered)
+    const tl = gsap.timeline({ paused: true, onComplete: scrollToFirstEra });
 
     records.forEach((record, i) => {
-      // Flip each record forward and up — hinging from bottom edge
       tl.to(record, {
         rotationX: -80,
         y: -180,
         z: 150,
         opacity: 0,
         scale: 0.92,
-        duration: 1,
+        duration: stagger * 1.5,
         ease: 'power2.in',
-      }, i * 0.7);
+      }, i * stagger);
 
-      // Simultaneously bring the next card forward into position
       if (i < numRecords - 1) {
         tl.to(records[i + 1], {
           y: 0,
           z: 0,
           rotationX: 0,
-          duration: 0.5,
+          duration: stagger * 0.8,
           ease: 'power1.out',
-        }, i * 0.7 + 0.3);
+        }, i * stagger + stagger * 0.4);
       }
     });
+
+    // Add "Riffling through the crate..." text with animated dots
+    const riffleText = document.createElement('div');
+    riffleText.className = 'crate__riffle-text';
+    riffleText.innerHTML = `
+      <span class="crate__riffle-words">Riffling through the crate</span><span class="crate__riffle-dots"><span class="crate__dot">.</span><span class="crate__dot">.</span><span class="crate__dot">.</span></span>
+    `;
+    riffleText.style.cssText = `
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 2rem;
+      opacity: 0;
+      color: var(--neon-pink);
+      text-shadow: 0 0 10px rgba(255, 45, 149, 0.6), 0 0 30px rgba(255, 45, 149, 0.3);
+    `;
+    crate.parentElement.insertBefore(riffleText, crate);
+
+    // Animated dots CSS
+    const dotStyle = document.createElement('style');
+    dotStyle.textContent = `
+      .crate__riffle-dots .crate__dot {
+        opacity: 0;
+        animation: dotPulse 1.5s infinite;
+      }
+      .crate__riffle-dots .crate__dot:nth-child(1) { animation-delay: 0s; }
+      .crate__riffle-dots .crate__dot:nth-child(2) { animation-delay: 0.3s; }
+      .crate__riffle-dots .crate__dot:nth-child(3) { animation-delay: 0.6s; }
+      @keyframes dotPulse {
+        0%, 20% { opacity: 0; }
+        40% { opacity: 1; }
+        60%, 100% { opacity: 0.3; }
+      }
+    `;
+    document.head.appendChild(dotStyle);
+
+    // Trigger once when crate section is fully visible
+    ScrollTrigger.create({
+      trigger: crateSection,
+      start: 'top 20%',
+      once: true,
+      onEnter: () => {
+        // Fade in text first
+        gsap.to(riffleText, {
+          opacity: 1,
+          duration: 0.6,
+          onComplete: () => {
+            // Then start flipping
+            tl.play();
+          }
+        });
+      }
+    });
+
+    function scrollToFirstEra() {
+      // Fade out text, then scroll
+      gsap.to(riffleText, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          const firstEra = document.querySelector('.era');
+          if (firstEra) {
+            gsap.to(window, {
+              scrollTo: { y: firstEra, offsetY: 50 },
+              duration: 1,
+              ease: 'power2.inOut',
+            });
+          }
+        }
+      });
+    }
   }
 
   // ── Render Liner Notes ───────────────────

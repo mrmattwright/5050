@@ -25,16 +25,23 @@
   border-radius: 50%;
   background: radial-gradient(
     circle at center,
-    #1a1a1a 0%,
-    #0d0d0d 30%,
-    #111 31%,
-    #0a0a0a 100%
+    #222 0%,
+    #151515 30%,
+    #1a1a1a 31%,
+    #111 70%,
+    #1a1a1a 88%,
+    #2a2a2a 95%,
+    #333 100%
   );
   position: relative;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
   box-shadow:
-    0 0 60px rgba(255, 45, 149, 0.15),
-    0 0 120px rgba(176, 38, 255, 0.1),
-    inset 0 0 80px rgba(0, 0, 0, 0.5);
+    0 0 80px rgba(255, 45, 149, 0.2),
+    0 0 160px rgba(176, 38, 255, 0.15),
+    inset 0 0 60px rgba(0, 0, 0, 0.4),
+    0 2px 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 2px rgba(255, 255, 255, 0.1),
+    0 0 3px rgba(255, 255, 255, 0.08);
   animation: vinyl-spin 20s linear infinite;
 }
 
@@ -52,8 +59,8 @@
     circle at center,
     transparent 0px,
     transparent 2px,
-    rgba(255, 255, 255, 0.03) 2px,
-    rgba(255, 255, 255, 0.03) 3px
+    rgba(255, 255, 255, 0.07) 2px,
+    rgba(255, 255, 255, 0.07) 3px
   );
   /* Light reflection / sheen across the grooves */
   mask-image: linear-gradient(
@@ -83,11 +90,13 @@
   background: linear-gradient(
     135deg,
     transparent 0%,
-    rgba(255, 45, 149, 0.04) 25%,
-    transparent 40%,
-    rgba(176, 38, 255, 0.06) 55%,
-    transparent 70%,
-    rgba(255, 45, 149, 0.03) 85%,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(255, 45, 149, 0.08) 30%,
+    transparent 42%,
+    rgba(176, 38, 255, 0.1) 55%,
+    transparent 68%,
+    rgba(255, 255, 255, 0.04) 80%,
+    rgba(255, 45, 149, 0.05) 90%,
     transparent 100%
   );
   pointer-events: none;
@@ -410,6 +419,20 @@
   content: '\201C';
   position: absolute;
   top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-style: normal;
+  color: var(--neon-pink);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.liner-notes__content::after {
+  content: '\201D';
+  position: absolute;
+  bottom: -2.5rem;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-display);
