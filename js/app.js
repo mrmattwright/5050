@@ -162,7 +162,7 @@
               gsap.to(riffleText, {
                 opacity: 0,
                 duration: 0.4,
-                delay: 1.2,
+                delay: 2,
                 onComplete: () => {
                   // Unpin
                   crateSection.style.cssText = '';
