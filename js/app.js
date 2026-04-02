@@ -32,7 +32,7 @@
     if (!crateSection || records.length === 0) return;
 
     const numRecords = records.length;
-    const stagger = 3 / numRecords;
+    const stagger = 5 / numRecords;
     let hasPlayed = false;
     let isAnimating = false;
 
