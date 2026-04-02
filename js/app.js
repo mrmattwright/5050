@@ -44,7 +44,7 @@
     `;
     riffleText.style.cssText = `
       position: fixed;
-      top: 15%;
+      top: 12%;
       left: 50%;
       transform: translateX(-50%);
       font-family: var(--font-display);
@@ -152,6 +152,9 @@
           riffleText.innerHTML = `
             <span class="crate__riffle-words">Loading memories</span><span class="crate__riffle-dots"><span class="crate__dot">.</span><span class="crate__dot">.</span><span class="crate__dot">.</span></span>
           `;
+          riffleText.style.top = '50%';
+          riffleText.style.transform = 'translate(-50%, -50%)';
+          riffleText.style.fontSize = 'clamp(1.6rem, 4vw, 2.2rem)';
           gsap.to(riffleText, {
             opacity: 1,
             duration: 0.4,
