@@ -168,6 +168,15 @@ const TRACKS = [
     message: "Dave Moggs. Greece. That beach. Seared. "
   },
   {
+    title: "Three Lions (Football's Coming Home)",
+    artist: "Baddiel, Skinner & Lightning Seeds",
+    year: 1996,
+    era: "00s",
+    imageUrl: "img/covers/18-three-lions.jpg",
+    spotifyUrl: "https://open.spotify.com/track/0Ai6qtPfiEYGCqBGJYWD1W",
+    message: ""
+  },
+  {
     title: "Maybe Tomorrow",
     artist: "Goldenhorse",
     year: 2003,
@@ -390,6 +399,15 @@ const TRACKS = [
     imageUrl: "img/covers/33-hailey-whitters.jpg",
     spotifyUrl: "https://open.spotify.com/track/0ENB9P6WtUEKYjQ3dKnK23",
     message: "Shared love of country with Sam T. "
+  },
+  {
+    title: "Future Me Hates Me",
+    artist: "The Beths",
+    year: 2018,
+    era: "2020s",
+    imageUrl: "img/covers/42-the-beths.jpg",
+    spotifyUrl: "https://open.spotify.com/track/0eL1VqUPElim7IP5eezImS",
+    message: ""
   },
   {
     title: "Baddy On The Floor",
