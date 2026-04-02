@@ -156,7 +156,7 @@ const TRACKS = [
     era: "00s",
     imageUrl: "img/covers/10-the-streets.jpg",
     spotifyUrl: "https://open.spotify.com/track/4H45wRMStWCWwCLQ8TEz1z",
-    message: "Clubbing in London. Dizzy new heights blinded by the lights. "
+    message: "Clubbing in London. Dizzy new heights blinded by the lights. These people are for life. "
   },
   {
     title: "Rose rouge",
